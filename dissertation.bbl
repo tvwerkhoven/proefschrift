@@ -1,0 +1,33 @@
+\providecommand{\noopsort}[1]{}
+\begin{thebibliography}{5}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Kolmogorov(1941)}]{kolmogorov1941c}
+Kolmogorov, A.~N. 1941,
+  \href{http://adsabs.harvard.edu/cgi-bin/nph-bib\_query?bibcode=1941DoSSR..30..301K}{{\em\JournalTitle{Akademiia
+  Nauk SSSR Doklady}}, 30, 301}, translated into English by V.\ Levin in
+  \citet{levin1991c}.
+
+\bibitem[{Kolmogorov(1991)}]{levin1991c}
+---. 1991,
+  \href{http://dx.doi.org/10.1098/rspa.1991.0075}{{\em\JournalTitle{Royal
+  Society of London Proceedings Series A}}, 434, 9}, english translation of
+  \citet{kolmogorov1941c} by V.\ Levin.
+
+\bibitem[{Linnik(1957)}]{linnik1957c}
+Linnik, V.~P. 1957, {\em\JournalTitle{Optics and Spectroscopy}}, 3, 401,
+  translated into English by M.\ Slade in \citet{linnik1994c}.
+
+\bibitem[{Linnik(1994)}]{linnik1994c}
+Linnik, V.~P. 1994,
+  \href{http://adsabs.harvard.edu/cgi-bin/nph-bib\_query?bibcode=1994ESOC...48..535L}{in
+  European Southern Observatory Conference and Workshop Proceedings, Vol.~48,
+  European Southern Observatory Conference and Workshop Proceedings, ed.
+  F.~Merkle}, 535, english translation of \citet{linnik1957c} by M.\ Slade and
+  edited by Jacques M.\ Beckers.
+
+\bibitem[{{\noopsort{Rayleigh}}Lord~Rayleigh(1902)}]{rayleigh1902c}
+{\noopsort{Rayleigh}}Lord~Rayleigh, J. W.~S. 1902, Scientific papers, Vol.~3,
+  {Wave Theory of Light} (Cambridge: Cambridge University Press), 47
+
+\end{thebibliography}

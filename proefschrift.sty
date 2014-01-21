@@ -1,0 +1,408 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+%
+% Copyright 2010--2014 Tim van Werkhoven (t.i.m.vanwerkhoven@gmail.com)
+% 
+% This work is licensed under the Creative Commons
+% Attribution-Noncommercial-Share Alike 3.0 Unported License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+% send a letter to Creative Commons, 171 Second Street, Suite 300, San 
+% Francisco, California, 94105, USA.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% BEGIN PREAMBLE %%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%
+%% PACKAGES %%
+%%%%%%%%%%%%%%
+
+\usepackage[xetex]{graphicx}
+% For clickable URLS/references/etc. within the PDF document
+\usepackage[xetex, colorlinks, breaklinks, hyperindex, pdfpagelabels, hyperfootnotes=false, pagebackref]{hyperref}
+% make sure references to figures and tables point ABOVE the floats, not below
+%\usepackage[all]{hypcap}
+% Math fonts 
+\usepackage{amsmath, amsthm, amssymb} % if desired
+\usepackage[math-style=TeX]{unicode-math}
+% Some improvements for xetex and latex. Loads fixltx2e, metalogo, xunicode, fontspec.
+% http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/fontspec/fontspec.pdf
+%\usepackage[no-math]{fontspec}
+\usepackage{xunicode}
+% see http://www.ctan.org/tex-archive/macros/xetex/latex/xltxtra/xltxtra.pdf
+\usepackage{xltxtra} 
+% Load colors, http://ftp.snt.utwente.nl/pub/software/tex/macros/xetex/latex/xecolour/doc/xecolour-user.pdf
+% For color usage
+\usepackage[xetex,table,hyperref,x11names,svgnames]{xcolor}
+% Better number formatting
+\usepackage[mode=text,separate-uncertainty=true,list-units = single, range-units=single, multi-part-units=single]{siunitx}
+% For headers 
+\usepackage{fancyhdr}
+% Setup page size specifically
+\usepackage[xetex,twoside]{geometry}
+% for source code stuff
+%\usepackage{listings}
+% shows various LaTeX layout settings http://ftp.snt.utwente.nl/pub/software/tex/macros/latex/contrib/layouts/
+%\usepackage{layouts}
+%\usepackage{layout}
+% supersedes babel, http://www.ctan.org/tex-archive/macros/xetex/latex/polyglossia
+\usepackage{polyglossia} 
+% tiny package useful for spaces after commands
+\usepackage{xspace}
+% change font style of section headers http://www.ctan.org/tex-archive/macros/latex/contrib/sectsty/
+%\usepackage{sectsty}
+% fancy verbatim http://ctan.org/tex-archive/macros/latex/contrib/fancyvrb
+\usepackage{fancyvrb}
+% footnotes stuff http://www.ctan.org/tex-archive/macros/latex/contrib/footmisc
+% Disable for referee version
+%\usepackage[side]{footmisc}
+% to include external pdf files as pages
+\usepackage{pdfpages}
+% fancy references, hyperlink DOIs
+\usepackage{natbib}
+\usepackage[warnundef]{jabbrv}
+\usepackage{doi}
+% creative commons icons \cclogo, \ccAttribution, \ccShareAlike, \ccNoDerivates, \ccNonCommercial -- or \ccby, \ccbysa, \ccbync
+\usepackage{ccicons}
+\usepackage{gitinfo}
+
+%% Subfigures (use subcaption instead of subfig, see <http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig>, <http://tex.stackexchange.com/questions/19554/vertical-alignment-with-subfig-and-pstricks>)
+\usepackage{caption}
+\usepackage[labelfont={sf,bf,small},textfont={sf,small},justification=RaggedRight]{subcaption} % for combining figures
+%\usepackage{subfig}
+
+%\usepackage{calc}					% to do math!
+%\usepackage{tabularx}				% to get columns to fill the width of the page
+%\usepackage{amsmath, amsthm, amssymb} %for other math stuff
+%\usepackage{multirow} 				% for multirow items, see http://www.minds.may.ie/~page/serendipity/index.php?/archives/43-Multirow-and-multicolumn-spanning-with-latex-tables.html
+\usepackage{booktabs}				% for nice tables
+%\usepackage{colortbl}				% for colored table rows
+%\usepackage{verbatim}				% to quote stuff (code, latex)
+%\usepackage{rotating}				% for rotating complete pages
+%\usepackage{pdflscape}				% for in-situ landscape
+% For multi-page floats <http://www.tex.ac.uk/cgi-bin/texfaq2html?label=dpfloat>
+%\usepackage[leftFloats]{fltpage}
+% For captions of anything, anywhere <http://www.ctan.org/pkg/capt-of>
+%\usepackage{capt-of}
+
+% Debug, print lipsum text
+\usepackage{kantlipsum}
+
+%%% Hyperref setup -- fixed parameters %%%
+
+\hypersetup{
+colorlinks = true,
+pdfborder = true,
+linkcolor = red,          % color of internal links
+citecolor = red,          % color of links to bibliography
+filecolor = magenta,      % color of file links
+urlcolor = blue,          % color of external links
+bookmarks = true,
+unicode = true,
+bookmarksnumbered = true,
+}
+
+% Backref options from <http://www.latex-community.org/forum/viewtopic.php?f=5&t=3670&start=10>
+\renewcommand*{\backreflastsep}{, }
+\renewcommand*{\backreftwosep}{, }
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifcase #1 %
+    \relax %
+  \or
+    (p.\ #4).%
+  \else
+    (pp. #4).%
+  \fi%
+}
+
+%%%%%%%%%%%%%%%%%%
+%% Font options %%
+%%%%%%%%%%%%%%%%%%
+
+% latex-project.org/papers/unicode-mathematics-in-LaTeX.pdf
+%\defaultfontfeatures{Mapping=tex-text, Fractions=Diagonal}
+\defaultfontfeatures{Mapping=tex-text}
+
+% Choose default fonts
+%\setmainfont[Numbers={OldStyle}]{Garamond Premier Pro % DOESN'T HAVE PROPER CYRILLIC L!}
+%\setmainfont[Numbers={OldStyle}]{Cochin} % 8/10 -> no proper fi ligature?
+%\setmainfont[Numbers={OldStyle}]{Hoefler Text} % 7.5/10
+%\setmainfont[Numbers={OldStyle}]{Minion Pro} %8/10
+\setmainfont[Numbers={OldStyle}]{Athelas} %8/10 friendly font
+%\setmainfont[Numbers={OldStyle}]{Charter} %6/10 too bold
+%\setmainfont[Numbers={OldStyle}]{Iowan Old Style} %7/10, quite bold, fat letters
+%\setmainfont[Numbers={OldStyle}]{XITS}
+%\setmainfont[Numbers={OldStyle}]{Baskerville}
+%\setmainfont[Numbers={OldStyle}]{Marion} % 7.5/10
+\setsansfont[Scale=MatchLowercase]{Helvetica Neue}
+\setmonofont[Scale=MatchLowercase]{Monaco}
+\setmathfont{Cambria Math}
+%\setmathfont{XITS Math}
+%\setmathfont{STIXGeneral}
+%\setmathfont[math-style=upright]{Neo Euler}
+%\setmathfont{Asana-Math.otf}
+%\setmathfont{xits-math.otf}
+%setmathfont{lmmath-regular.otf}
+
+%\usepackage{eulervm}
+%\usepackage[math]{kurier}
+%\usepackage{cmbright}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Polyglossia options %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setdefaultlanguage{british}
+\setotherlanguage{dutch}
+\setotherlanguage{russian}
+
+%%%%%%%%%%%%%%%%%
+%% PAGE LAYOUT %%
+%%%%%%%%%%%%%%%%%
+
+\sloppy % don't care too much about a lot of space in sentences
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{1ex}
+
+%\setlength{\marginparwidth}{70pt}
+% disable for referee version
+\geometry{includeheadfoot,includemp,papersize={170mm,240mm},total={124mm,185mm}, outermargin=5mm, innermargin=10mm}
+%\geometry{papersize={170mm,240mm},includeheadfoot,total={124mm,185mm}}
+%\setlength{\hoffset}{}
+%\addtolength{\hoffset}{0.5in}
+%\addtolength{\textwidth}{-1in}
+
+%\geometry{paper=a4paper, layout=a4paper}
+%\setlength{\hoffset}{}
+%\addtolength{\hoffset}{0.5in}
+%\addtolength{\textwidth}{-1in}
+%\setlength{\marginparwidth}{200pt}
+%\setlength{\marginparwidth}{3cm}
+
+% We use this number to scale the images made in Illustrator
+%\newcommand{\imgscale}{0.7}
+% We use this number to scale the images made with gnuplot
+%\newcommand{\plotscale}{1}
+
+%%%%%%%%%%%%%%%%%%%%%
+%% CUSTOM COMMANDS %%
+%%%%%%%%%%%%%%%%%%%%%
+
+%\renewcommand{\captionfont}{\small}	% use a small font for captions
+
+% Some path-shortcuts
+\newcommand{\imgpath}{./img/}
+\newcommand{\chapimgpath}{\imgpath}
+\newcommand{\plotpath}{./plots/}
+\newcommand{\chapplotpath}{\imgpath}
+\newcommand{\texpath}{./tex/}
+
+% Some command abbreviations
+\newcommand{\tsup}[1]{\textsuperscript{#1}}
+\newcommand{\tsub}[1]{\textsubscript{#1}}
+
+% TODO: better options for vectors/matrices?
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}%
+%\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}%
+%\newcommand{\Fourier}{\mathcal{F}}
+
+%\newcommand{\squash}[1]{\makebox[0pt]{#1}}
+%\newcommand{\code}[1]{\texttt{#1}}%
+
+%\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+
+%\newcommand{\mcol}[2]{\multicolumn{#1}{c}{#2}}
+%\newcommand{\mcoll}[2]{\multicolumn{#1}{@{}l@{}}{#2}}
+%\newcommand{\tabval}[3]{#1.&#2 & ± #3}
+%\newcommand{\tabvalb}[4]{#1.&#2&\makebox[0pt][l]{\tsub{\minus #3}}\tsup{+#4}}
+
+\newcommand{\TODO}[1]{\textbf{TODO: #1}\xspace}
+\newcommand{\CHECK}[1]{\textbf{CHECK: #1}\xspace}
+\newcommand{\NB}[1]{\textbf{N.B.: #1}\xspace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% WORDS/DEFINITION MACROS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Back reference from sections to TOC character (hand symbol in Garamond Premier Pro)
+\newcommand{\hyperback}{\char"E1CD}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% REFERENCE COMMANDS %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Figure references
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\Figref}[1]{\figurename~\ref{#1}}
+\newcommand{\figsref}[2]{Figs.~\ref{#1}--\ref{#2}}
+
+% Equation references
+\newcommand{\Eqnref}[1]{\equationname~(\ref{#1})}
+\newcommand{\eqnref}[1]{Eq.~(\ref{#1})}
+\newcommand{\eqnsref}[2]{Eqs.~(\ref{#1})--(\ref{#2})}
+
+% Section references
+\newcommand{\Secref}[1]{\sectionname~\ref{#1}} %\sectionname
+\newcommand{\secref}[1]{Sect.~\ref{#1}}
+\newcommand{\Chapref}[1]{\chaptername~\ref{#1}} %\Chapter
+\newcommand{\chapref}[1]{\chaptername~\ref{#1}} %\Chapter
+
+% appendix reference
+\newcommand{\Appref}[1]{\appendixname~\ref{#1}}
+
+% table reference (only one kind)
+\newcommand{\Tabref}[1]{\tablename~\ref{#1}}
+\newcommand{\tabref}[1]{\Tabref{#1}}
+
+% \Autoref is for the beginning of the sentence
+% From <www.latex-community.org/forum/viewtopic.php?f=4&t=334>
+\let\orgautoref\autoref
+\providecommand{\Autoref}{%
+\def\equationautorefname{Equation}%
+\def\figureautorefname{Figure}%
+\def\subfigureautorefname{Figure}%
+\orgautoref}
+% \autoref is used inside the sentence to produce Fig., and Eq. for figures, subfigures, and equations
+\renewcommand{\autoref}{%
+\def\equationautorefname{Eq.}%
+\def\figureautorefname{Fig.}%
+\def\subfigureautorefname{Fig.}%
+\orgautoref}
+
+%%%%%%%%%%%%%%%%%%%
+%% FANCY HEADERS %%
+%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy} 					% use fancy headers by default
+
+%%% fancy pagestyle options
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancyhf{}							% empty pagestyle first, then manually set on next lines
+\fancyfoot[LE,RO]{\thepage} 			% page numbers at the bottom left and right 
+\fancyhead[LE]{\leftmark} 			% title left page top left
+\fancyhead[RO]{\rightmark}			% section right page top right
+
+\renewcommand{\chaptermark}[1]{ 
+%\markboth{\scshape \MakeUppercase{\thechapter{}. #1}}{} 
+\markboth{\textit{#1}}{} 
+} 
+\renewcommand{\sectionmark}[1]{ 
+%\markright{\scshape \MakeUppercase{\thesection{} #1}}
+\markright{\textit{\thesection{} #1}}
+} 
+
+%\definecolor{LightGray}{rgb}{0.85, 0.85, 0.85}
+%\newcommand{\pagenumber}{%
+%\ifnum \value{page} = 13 \thepage% 13\textcolor{LightGray}{37}
+%\else \thepage%
+%\fi%
+%}
+
+%%% yes headerrule, no footerrule 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+%%% Set plain pagestyle here
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyfoot[LE,RO]{\thepage} 		% page numbers at the bottom left and right 
+% reset the rule width for header and footer
+\renewcommand{\headrulewidth}{0pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHAPTER / SECTION HEADERS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% see http://theoval.sys.uea.ac.uk/~nlct/latex/thesis/node9.html
+% see also http://zoonek.free.fr/LaTeX/LaTeX_samples_section/0.html
+
+%%% New chapter markup here
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newfontface\chapterfont[Contextuals={WordInitial,WordFinal}]{Hoefler Text}
+
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{100\p@}%
+  {\parindent \z@ \raggedright \chapterfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+
+
+\newlength{\chapwidth}
+\newlength{\titlewidth}
+\newsavebox{\chapbox}
+\renewcommand{\@makechapterhead}[1]{%
+% we want <chapter> - <title>, and <title> is in a parbox
+% to get the width of the parbox, we measure the width of <chapter> and 
+% set the width of the parbox to <textwidth>-<chapwidth>
+  %\settowidth{\chapwidth}{\scalebox{4}{\Huge\scshape \thechapter} \chapord{\value{chapter}}}
+  \sbox{\chapbox}{\scalebox{6}{\Huge\scshape \thechapter}}
+  \settowidth{\chapwidth}{\usebox{\chapbox}}
+  \setlength{\titlewidth}{\textwidth}
+  \addtolength{\titlewidth}{-\chapwidth}
+
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \vspace{5pt}%                                 	% add vertical space
+	\usebox{\chapbox}%\chapord{\value{chapter}}
+	\parbox[b]{\titlewidth}{\raggedleft \Huge \scshape #1}}%\par <Chapter> title 
+%	\parbox[b]{\titlewidth}{\raggedright \Huge \scshape #1}%
+%	\raggedleft\scalebox{4}{\Huge\scshape \thechapter}%
+%	\scalebox{-4}[4]{\color{LightGray}\Huge\scshape \thechapter}}%\par <Chapter> title 
+    \vspace{5pt}%                                 % add vertical space
+    \hrule                                        % horizontal rule
+    \nobreak
+    \vskip 40\p@
+  }
+
+%%% We need this to get a fancy 'st', 'nd' 'rd' or 'th' chapter postfix
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\chapsty{\LARGE \itshape}
+\newlength{\chapup}
+\newlength{\chapheight}
+\settoheight{\chapup}{\scalebox{4}{\Huge\scshape 1}}
+\settoheight{\chapheight}{\chapsty nd \@chapapp}
+\addtolength{\chapup}{-\chapheight}
+
+\newcommand{\chapord}[1]{
+	\raisebox{\chapup}{\makebox(0,0)[lb]{\hspace{-10pt}\chapsty \postfix{#1} \@chapapp}}
+}
+\newcommand{\postfix}[1]{
+\ifnum #1 = 1 st
+\else
+ \ifnum #1 = 2 nd
+ \else
+  \ifnum #1 = 3 rd
+  \else th
+  \fi
+ \fi
+\fi
+}
+
+%%% Disable some stuff for appendix
+\newcommand{\beginappendix}{%
+\appendix%
+% Set \chapord command to null to suppress 'nd chapter' output
+\renewcommand{\chapord}[1]{}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% END PREAMBLE %%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

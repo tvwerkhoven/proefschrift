@@ -1,0 +1,131 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+%
+%% Copyright 2010--2014 Tim van Werkhoven (t.i.m.vanwerkhoven@gmail.com)
+%% 
+%% This work is licensed under the Creative Commons
+%% Attribution-Noncommercial-Share Alike 3.0 Unported License. To view a copy
+%% of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+%% send a letter to Creative Commons, 171 Second Street, Suite 300, San 
+%% Francisco, California, 94105, USA.
+
+\pagenumbering{roman}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%
+%%% COVERPAGE %%%
+%%%%%%%%%%%%%%%%%
+
+%%% disable page numbering
+\hypersetup{pageanchor=false}
+
+%% First page, cover image, do not fit paper to image
+\includepdf[fitpaper=false]{\imgpath \thesiscoverimg}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%
+%%% TITLEPAGE %%%
+%%%%%%%%%%%%%%%%%
+
+%%% Set small, symmetric margins
+\newgeometry{left=2cm,right=2cm,bottom=2cm,top=2cm}
+
+\begin{titlepage}
+  \vspace*{\fill}
+  \begin{center}
+  {
+    {\Huge \thesistitle }\\[0.5cm]
+    {\huge ~\thesissubtitle~ }\\
+  }
+  \end{center}
+  \vspace*{\fill}
+  \vspace*{\fill}
+\end{titlepage}
+\clearpage
+
+\vspace*{\fill}
+\ccbyncsa\ \thesisyear\ \thesisauthor\\
+Some rights reserved -- \url{creativecommons.org/licenses/by-nc-sa/3.0/}\\
+
+% Hack from http://www.tex.ac.uk/cgi-bin/texfaq2html?label=topgraph
+\thesisonline\\
+
+\textsc{isbn-13}: \href{http://www.google.com/?q=\thesisisbna}{\thesisisbna}\\
+\textsc{isbn-10}: \href{http://www.google.com/?q=\thesisisbnb}{\thesisisbnb}\\
+
+Printed by \thesisprinter\ in \thesisprintloc\\
+
+\thesisprintdetails\\
+
+\emph{Cover image:} \thesiscoverimgdesc\\
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LEIDEN TITLEPAGE %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% N.B. The last line needs to be manually justified because there is no center-justified environment.
+% From http://onderzoek.leidenuniv.nl/phd/phd-kandidaten/proefschrift/titelblad.html
+% Also from titels.tex by Alfred de Wijn.
+\begin{center}
+  {
+    {\Huge \thesistitle }\\[1em]
+    {\huge \thesissubtitle }\\[5em]
+    {\Large Proefschrift}\\[5em]
+    {\Large \parbox{0.65 \textwidth}{ter verkrijging van de graad van Doctor aan de Universiteit Leiden, op gezag van Rector Magnificus prof.\,mr. C.\,J.\,J.\,M.\ Stolker,
+volgens besluit van het College voor Promoties
+te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}}}\vfill
+	{\Large door}\\[3em]
+	{\parbox[c][][c]{0.65 \textwidth}{\centering\Large\thesisauthor\\ \thesisauthorborn}}
+  }
+\end{center}
+
+\clearpage
+
+%%% Promotor(s) / promotiecommissie
+{\large\makebox[0pt][l]{Promotoren:}\hspace{3.5cm} prof.\,dr.~Jane~Doe\\
+\hspace*{3.5cm} prof.\,dr.~John~Smith}\\[1cm]
+{\large\makebox[0pt][l]{Promotiecommissie:}\hspace{3.5cm} prof.\,dr.~Jane~Doe\\
+\hspace*{3.5cm} prof.\,dr.~John~Smith\\
+\hspace*{3.5cm} prof.\,dr.~Juan~Santiago\\
+\hspace*{3.5cm} prof.\,dr.~Bo~Xi\\
+\hspace*{3.5cm} prof.\,dr.~Aлександр~Пехтолд\\
+\hspace*{3.5cm} prof.\,dr.~Sofia~Johnson\\
+}\\[1cm]
+\vfill
+
+{\thesisfunding}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%
+%%% DEDICATION %%%
+%%%%%%%%%%%%%%%%%%
+
+\vspace*{0.25\textheight}
+\begin{center}
+\emph{\thesisproverb}
+\vspace*{0.5\textheight}
+
+\emph{\thesisdedication}
+\end{center}
+
+\cleardoublepage
+
+%%%%%%%%%%%
+%%% TOC %%%
+%%%%%%%%%%%
+
+%% enable page numbering again, and use roman for the first few pages
+\hypersetup{pageanchor=true}
+
+\restoregeometry
+\setcounter{tocdepth}{1}
+%% Perhaps we want sections linking back to the TOC http://tex.stackexchange.com/questions/45603/hyperlink-to-the-toc-page http://tex.stackexchange.com/questions/32495/linking-the-section-text-to-the-toc
+\hypertarget{toc}{}
+\tableofcontents
+
+% clear the remaining
+\cleardoublepage
+%\clearemptydoublepage
+\pagenumbering{arabic}
