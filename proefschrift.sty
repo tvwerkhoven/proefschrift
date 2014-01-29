@@ -18,17 +18,23 @@
 %% PACKAGES %%
 %%%%%%%%%%%%%%
 
+% See https://en.wikibooks.org/wiki/LaTeX/Package_Reference
+
 \usepackage[xetex]{graphicx}
 % For clickable URLS/references/etc. within the PDF document
 \usepackage[xetex, colorlinks, breaklinks, hyperindex, pdfpagelabels, hyperfootnotes=false, pagebackref]{hyperref}
 % make sure references to figures and tables point ABOVE the floats, not below
 %\usepackage[all]{hypcap}
 % Math fonts 
-\usepackage{amsmath, amsthm, amssymb} % if desired
-\usepackage[math-style=TeX]{unicode-math}
+\usepackage{amsmath,amssymb,bm}
+%\usepackage{amsmath, bm, amsthm} % if desired
+%\usepackage[noendash]{mathastext} 
+\usepackage{mathspec} % replaces amssymb; do not use unicode-math
+%\usepackage[math-style=TeX]{unicode-math}
+\usepackage[italic]{mathastext}  % propagates document text font to math mode
 % Some improvements for xetex and latex. Loads fixltx2e, metalogo, xunicode, fontspec.
 % http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/fontspec/fontspec.pdf
-%\usepackage[no-math]{fontspec}
+\usepackage[no-math]{fontspec}
 \usepackage{xunicode}
 % see http://www.ctan.org/tex-archive/macros/xetex/latex/xltxtra/xltxtra.pdf
 \usepackage{xltxtra} 
@@ -204,7 +210,7 @@ bookmarksnumbered = true,
 \newcommand{\tsub}[1]{\textsubscript{#1}}
 
 % TODO: better options for vectors/matrices?
-\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}%
+%\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}%
 %\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}%
 %\newcommand{\Fourier}{\mathcal{F}}
 
