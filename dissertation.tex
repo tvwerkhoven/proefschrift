@@ -12,6 +12,14 @@
 \documentclass[twoside]{book}
 \usepackage{proefschrift}
 
+%% Set languages for polyglossia %%
+\setdefaultlanguage{british}
+\setotherlanguage{dutch}
+\setotherlanguage{russian}
+
+%% Defining custom hyphenations %%
+\hyphenation{exo-pla-net exo-pla-nets exo-moon exo-moons}
+
 %% Define constants for this thesis %%
 \newcommand\thesistitle{Title}
 \newcommand\thesissubtitle{subtitle} % Use a space ~ for no subtitle
@@ -49,8 +57,7 @@ pdfproducer = {pdfLaTeX, version \gitAbbrevHash @ \gitAuthorIsoDate},
 }
 
 %%% Use specific commands for this thesis %%%
-\newcommand{\rn}{\ensuremath{r_\mathrm0}}
-%\newcommand{\parmro}{$r\tsub{0}$}
+\newcommand\rn{\ensuremath{r_\text{0}}\xspace}
 
 %%% Specific non-SI units for this thesis %%%
 %\DeclareSIUnit\mag{mag}
@@ -65,17 +72,13 @@ pdfproducer = {pdfLaTeX, version \gitAbbrevHash @ \gitAuthorIsoDate},
 % Define custom commands used in the BibTeX file:
 % \newcommand{\tjri}{Test Journal of Reference Information}
 
-%%% For a double-spaced referee version %%%
-%\usepackage{setspace}
-%\doublespacing
-
 \begin{document}
 
 %%% Titlepages etc %%%
 \input{\texpath titlepage}
 
 %%% Main content chapters %%%
-\input{\texpath chap_example}
+\input{\texpath chap_example.tex}
 
 %%% Appendices %%%
 \beginappendix
