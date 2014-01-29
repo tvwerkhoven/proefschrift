@@ -71,9 +71,9 @@ The luminosity $L_\odot$ and the radius $R_\odot$ yield an effective temperature
 The radius of the visible disk is commonly taken as the solar radius $R_\odot=(6.960\pm0.001)\times10^8$~m.\\
 The 1998 observations targeted plage around NOAA active region 8235 at a heliocentric viewing angle of $40$~degrees (µ = 0.77) in the $1600$~\AA\ UV passband and in the EUV $171$~\AA\ (\ion{Fe}{IXX}) and $195$~\AA\ (\ion{Fe}{XII}) passbands.
 
-Regular text: \ion{C}{IV}\ \ion{H\alpha}{}\\
-\textbf{Boldface text: \ion{C}{IV}\ \ion{H\alpha}{}}\\
-\emph{Emphasized text: \ion{C}{IV}\ \ion{H\alpha}{}}\\
+Regular text: \ion{C}{IV}\ \ion{H$\alpha$}{}\\
+\textbf{Boldface text: \ion{C}{IV}\ \ion{H$\alpha$}{}}\\
+\emph{Emphasized text: \ion{C}{IV}\ \ion{H$\alpha$}{}}\\
 \url{http://url.foo.bar/~bla}\\
 \texttt{Typewriter text.}
 
@@ -119,7 +119,7 @@ Donec cursus suscipit elit vestibulum porta. Maecenas cursus sapien a urna ornar
 \newcommand{\minussign}{-}
 
 \newcommand{\tabval}[3]{#1.&#2 & ± #3}
-\newcommand{\tabvalb}[4]{#1.&#2&\makebox[0pt][l]{\tsub{\minus #3}}\tsup{+#4}}
+\newcommand{\tabvalb}[4]{#1.&#2&\makebox[0pt][l]{\tsub{$-$#3}}\tsup{+#4}}
 
 \begin{table}
 	% See https://chenfuture.wordpress.com/2007/09/20/latex-tabular-more/
@@ -129,7 +129,10 @@ Donec cursus suscipit elit vestibulum porta. Maecenas cursus sapien a urna ornar
 	
 	\begin{centering}
 		% col 1 (l): parameter
-		\caption{hello}
+		\caption{
+		Example of semi-complex table with row-spanning and column-spanning.
+		\textbf{N.B. This is better solved using the SI packge!}
+		}
 		% col 2 (l): parameter unit
 		% col 3 - 5 (r@{}l@{}l): 2 NEI - RGS, value &.decimal & ± error
 		% col 6 - 8 (r@{}l@{}l): 2 NEI - MOS,  -- " -- 
