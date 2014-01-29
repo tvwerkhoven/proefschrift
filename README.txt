@@ -10,17 +10,6 @@ Various packages, use a distribution such as TeXlive etc. In addition to that:
 
 - jabbrv[1]
 
-License
-=======
-
-Copyright 2014 Tim van Werkhoven (t.i.m.vanwerkhoven@gmail.com)
- 
-This work is licensed under the Creative Commons
-Attribution-Noncommercial-Share Alike 3.0 Unported License. To view a copy
-of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
-send a letter to Creative Commons, 171 Second Street, Suite 300, San 
-Francisco, California, 94105, USA.
-
 Fonts
 =====
 
@@ -36,7 +25,7 @@ Acknowledgments
 
 - The image `placeholder.pdf' was copied from Wikipedia[1]. This work has been released into the public domain by its author, Vadmium at the English Wikipedia project. This applies worldwide.
 - jabbrv_yahapj.bst is a fork of yahapj.bst[2] adapted for use with jabbrv[3].
-
+- This style is very loosely based on Alfred de Wijn's thesis, available at http://www.iluvatar.org/~dwijn/thesis
 
 Resources
 =========
@@ -56,3 +45,14 @@ References
 [5] http://www.tug.dk/FontCatalogue/mathfonts.html
 [6] http://tex.stackexchange.com/questions/58098/what-are-all-the-font-styles-i-can-use-in-math-mode
 [7] http://latex-project.org/papers/unicode-mathematics-in-LaTeX.pdf
+
+License
+=======
+
+Copyright 2014 Tim van Werkhoven (timvanwerkhoven@gmail.com)
+ 
+This work is licensed under the Creative Commons
+Attribution-Noncommercial-Share Alike 3.0 Unported License. To view a copy
+of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+send a letter to Creative Commons, 171 Second Street, Suite 300, San 
+Francisco, California, 94105, USA.
