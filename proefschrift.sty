@@ -13,7 +13,36 @@
 %%%%%%%%%%%%%%%%%%% BEGIN PREAMBLE %%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% See https://en.wikibooks.org/wiki/LaTeX/Creating_Packages
 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{proefschrift}[2014/01/29 Dutch thesis package]
+
+%% doublespace option
+\newif\if@doublespacing\@doublespacingfalse
+\DeclareOption{doublespacing}{
+  \@doublespacingtrue
+}
+
+%% b5paper option -- set this paper true, the rest false
+\newif\if@bfivepaper\@bfivepaperfalse
+\DeclareOption{b5paper}{
+  \@bfivepapertrue
+  \@afourpaperfalse
+}
+
+%% a5paper option -- set this paper true, the rest false
+\newif\if@afourpaper\@afourpaperfalse
+\DeclareOption{a4paper}{
+  \@afourpapertrue
+  \@bfivepaperfalse
+}
+
+
+\ExecuteOptions{b5paper}
+
+\ProcessOptions\relax
+ 
 %%%%%%%%%%%%%%
 %% PACKAGES %%
 %%%%%%%%%%%%%%
@@ -72,6 +101,7 @@
 % creative commons icons \cclogo, \ccAttribution, \ccShareAlike, \ccNoDerivates, \ccNonCommercial -- or \ccby, \ccbysa, \ccbync
 \usepackage{ccicons}
 \usepackage{gitinfo}
+\usepackage{setspace}
 
 %% Subfigures (use subcaption instead of subfig, see <http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig>, <http://tex.stackexchange.com/questions/19554/vertical-alignment-with-subfig-and-pstricks>)
 \usepackage{caption}
@@ -173,8 +203,14 @@ bookmarksnumbered = true,
 \setlength{\parskip}{1ex}
 
 %\setlength{\marginparwidth}{70pt}
-% disable for referee version
-\geometry{includeheadfoot,includemp,papersize={170mm,240mm},total={124mm,185mm}, outermargin=5mm, innermargin=10mm}
+% See https://en.wikibooks.org/wiki/TeX/if
+\if@bfivepaper
+	\geometry{includeheadfoot,includemp,papersize={170mm,240mm},total={124mm,185mm}, outermargin=5mm, innermargin=10mm}
+\fi
+\if@afourpaper
+	\geometry{reset,a4paper,margin=1in}
+\fi
+
 %\geometry{papersize={170mm,240mm},includeheadfoot,total={124mm,185mm}}
 %\setlength{\hoffset}{}
 %\addtolength{\hoffset}{0.5in}
@@ -413,3 +449,10 @@ bookmarksnumbered = true,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%% END PREAMBLE %%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@doublespacing
+\doublespacing
+\fi
+
+
+\endinput
