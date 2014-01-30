@@ -54,16 +54,17 @@
 \usepackage[xetex, colorlinks, breaklinks, hyperindex, pdfpagelabels, hyperfootnotes=false, pagebackref]{hyperref}
 % make sure references to figures and tables point ABOVE the floats, not below
 %\usepackage[all]{hypcap}
-% Math fonts 
-\usepackage{amsmath,amssymb,bm}
-%\usepackage{amsmath, bm, amsthm} % if desired
+% Math fonts, use mathspec with unicode-math and unicode math font without fontspec and bm
+% https://tex.stackexchange.com/questions/96024/how-to-use-system-font-for-equation-in-xelatex
+% https://tex.stackexchange.com/questions/11058/how-do-i-change-the-math-italic-font-in-xetex-fontspec
+% https://tex.stackexchange.com/questions/103765/harvard-thesis-template-and-error-using-bm-package
+\usepackage{amsmath,amssymb}
 %\usepackage[noendash]{mathastext} 
-\usepackage{mathspec} % replaces amssymb; do not use unicode-math
-%\usepackage[math-style=TeX]{unicode-math}
-\usepackage[italic]{mathastext}  % propagates document text font to math mode
+\usepackage{mathspec}
+\usepackage[math-style=TeX]{unicode-math}
 % Some improvements for xetex and latex. Loads fixltx2e, metalogo, xunicode, fontspec.
 % http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/fontspec/fontspec.pdf
-\usepackage[no-math]{fontspec}
+%\usepackage{fontspec}
 \usepackage{xunicode}
 % see http://www.ctan.org/tex-archive/macros/xetex/latex/xltxtra/xltxtra.pdf
 \usepackage{xltxtra} 
@@ -176,6 +177,7 @@ bookmarksnumbered = true,
 \setmonofont[Scale=MatchLowercase]{Monaco}
 \setmathfont{Cambria Math}
 %\setmathfont{XITS Math}
+%\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
 %\setmathfont{STIXGeneral}
 %\setmathfont[math-style=upright]{Neo Euler}
 %\setmathfont{Asana-Math.otf}
