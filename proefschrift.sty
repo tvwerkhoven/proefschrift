@@ -51,7 +51,7 @@
 
 % See https://en.wikibooks.org/wiki/LaTeX/Package_Reference
 
-\usepackage[xetex]{graphicx}
+\usepackage{graphicx}
 % For clickable URLS/references/etc. within the PDF document
 \usepackage[xetex, colorlinks, breaklinks, hyperindex, pdfpagelabels, hyperfootnotes=false, pagebackref]{hyperref}
 % make sure references to figures and tables point ABOVE the floats, not below
@@ -75,15 +75,15 @@
 \usepackage[xetex,table,hyperref,x11names,svgnames]{xcolor}
 % Better number formatting
 \usepackage[mode=text,separate-uncertainty=true,list-units = single, range-units=single, multi-part-units=single]{siunitx}
-% For headers 
-\usepackage{fancyhdr}
+% For fancy headers 
+%\usepackage{fancyhdr}
 % Setup page size specifically
-\usepackage[xetex,twoside]{geometry}
+%\usepackage[xetex,twoside]{geometry}
 % for source code stuff
 %\usepackage{listings}
 % shows various LaTeX layout settings http://ftp.snt.utwente.nl/pub/software/tex/macros/latex/contrib/layouts/
-%\usepackage{layouts}
-%\usepackage{layout}
+\usepackage{layouts}
+\usepackage{layout}
 % supersedes babel, http://www.ctan.org/tex-archive/macros/xetex/latex/polyglossia
 \usepackage{polyglossia} 
 % tiny package useful for spaces after commands
@@ -105,6 +105,7 @@
 \usepackage{ccicons}
 \usepackage{gitinfo}
 \usepackage{setspace}
+\usepackage{framed}
 
 %% Subfigures (use subcaption instead of subfig, see <http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig>, <http://tex.stackexchange.com/questions/19554/vertical-alignment-with-subfig-and-pstricks>)
 \usepackage{caption}
@@ -199,30 +200,27 @@ bookmarksnumbered = true,
 \setlength{\parskip}{1ex}
 
 %\setlength{\marginparwidth}{70pt}
-% See https://en.wikibooks.org/wiki/TeX/if
+% theses are 170 × 240 mm^2 = 6.69 × 9.45 in^2
+% B5 is 176 × 250 (surface diff = 7.8%)
+% msmallroyalvopaper is 156 × 234 (surface diff = 10%)
+%\usepackage{octavo}
+%\usepackage[b5paper,layout=b5paper]{geometry} 
+%\usepackage[a4paper,layout=b5paper,layouthoffset=17mm,layoutvoffset=23.5mm,showcrop]{geometry} 
+
+% Setting page size, memman.pdf Sect. 2.6
+% Based on https://tex.stackexchange.com/questions/55502/modern-book-design-margins-and-typed-area
 \if@bfivepaper
-	\geometry{includeheadfoot,includemp,papersize={170mm,240mm},total={124mm,185mm}, outermargin=5mm, innermargin=10mm}
+	\setstocksize{240mm}{170mm}
+	\settrimmedsize{240mm}{170mm}{*}
+	\medievalpage[9]
+	\checkandfixthelayout
 \fi
 \if@afourpaper
-	\geometry{reset,a4paper,margin=1in}
+	\setstocksize{297mm}{210mm}
+	\settrimmedsize{297mm}{210mm}{*}
+	\medievalpage[9]
+	\checkandfixthelayout
 \fi
-
-%\geometry{papersize={170mm,240mm},includeheadfoot,total={124mm,185mm}}
-%\setlength{\hoffset}{}
-%\addtolength{\hoffset}{0.5in}
-%\addtolength{\textwidth}{-1in}
-
-%\geometry{paper=a4paper, layout=a4paper}
-%\setlength{\hoffset}{}
-%\addtolength{\hoffset}{0.5in}
-%\addtolength{\textwidth}{-1in}
-%\setlength{\marginparwidth}{200pt}
-%\setlength{\marginparwidth}{3cm}
-
-% We use this number to scale the images made in Illustrator
-%\newcommand{\imgscale}{0.7}
-% We use this number to scale the images made with gnuplot
-%\newcommand{\plotscale}{1}
 
 %%%%%%%%%%%%%%%%%%%%%
 %% CUSTOM COMMANDS %%
@@ -315,15 +313,16 @@ bookmarksnumbered = true,
 %% FANCY HEADERS %%
 %%%%%%%%%%%%%%%%%%%
 
-\pagestyle{fancy} 					% use fancy headers by default
+%\pagestyle{fancy} 					% use fancy headers by default
+\pagestyle{ruled}
 
 %%% fancy pagestyle options
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\fancyhf{}							% empty pagestyle first, then manually set on next lines
-\fancyfoot[LE,RO]{\thepage} 			% page numbers at the bottom left and right 
-\fancyhead[LE]{\leftmark} 			% title left page top left
-\fancyhead[RO]{\rightmark}			% section right page top right
+%\fancyhf{}							% empty pagestyle first, then manually set on next lines
+%\fancyfoot[LE,RO]{\thepage} 			% page numbers at the bottom left and right 
+%\fancyhead[LE]{\leftmark} 			% title left page top left
+%\fancyhead[RO]{\rightmark}			% section right page top right
 
 \renewcommand{\chaptermark}[1]{ 
 %\markboth{\scshape \MakeUppercase{\thechapter{}. #1}}{} 
@@ -344,18 +343,18 @@ bookmarksnumbered = true,
 %%% yes headerrule, no footerrule 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.0pt}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.0pt}
 
 %%% Set plain pagestyle here
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\fancypagestyle{plain}{
-\fancyhf{}
-\fancyfoot[LE,RO]{\thepage} 		% page numbers at the bottom left and right 
-% reset the rule width for header and footer
-\renewcommand{\headrulewidth}{0pt}
-}
+%\fancypagestyle{plain}{
+%\fancyhf{}
+%\fancyfoot[LE,RO]{\thepage} 		% page numbers at the bottom left and right 
+%% reset the rule width for header and footer
+%\renewcommand{\headrulewidth}{0pt}
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CHAPTER / SECTION HEADERS %%
@@ -364,6 +363,11 @@ bookmarksnumbered = true,
 % see http://theoval.sys.uea.ac.uk/~nlct/latex/thesis/node9.html
 % see also http://zoonek.free.fr/LaTeX/LaTeX_samples_section/0.html
 
+% From http://staff.science.uva.nl/~vdham/projects/thesis-typesetting.html
+\newenvironment{basedon}%
+    {\begin{framed}\begin{sloppypar}\noindent}%
+    {\end{sloppypar}\end{framed}}
+    
 %%% New chapter markup here
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newfontface\chapterfont[Contextuals={WordInitial,WordFinal}]{Hoefler Text}

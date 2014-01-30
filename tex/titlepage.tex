@@ -11,36 +11,41 @@
 
 \pagenumbering{roman}
 \pagestyle{empty}
+%%% disable page numbering
+\hypersetup{pageanchor=false}
+%%% Set small, symmetric 2cm margins
+\setlrmarginsandblock{2cm}{2cm}{*}
+\setulmarginsandblock{2cm}{2cm}{*}
+\checkandfixthelayout
+% Magic happens here:
+% http://tex.stackexchange.com/a/110230
+\makeatletter
+\ch@ngetext
+\makeatletter
+\clearpage
+
 
 %%%%%%%%%%%%%%%%%
 %%% COVERPAGE %%%
 %%%%%%%%%%%%%%%%%
 
-%%% disable page numbering
-\hypersetup{pageanchor=false}
-
-%% First page, cover image, do not fit paper to image
+%%% First page, cover image, do not fit paper to image
 \includepdf[fitpaper=false]{\imgpath \thesiscoverimg}
 \cleardoublepage
 
-%%%%%%%%%%%%%%%%%
-%%% TITLEPAGE %%%
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% GENERAL TITLEPAGE %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% Set small, symmetric margins
-\newgeometry{left=2cm,right=2cm,bottom=2cm,top=2cm}
-
-\begin{titlepage}
-  \vspace*{\fill}
-  \begin{center}
-  {
-    {\Huge \thesistitle }\\[0.5cm]
-    {\huge ~\thesissubtitle~ }\\
-  }
-  \end{center}
-  \vspace*{\fill}
-  \vspace*{\fill}
-\end{titlepage}
+\vspace*{\fill}
+\begin{center}
+{
+  {\Huge \thesistitle }\\[0.5cm]
+  {\huge ~\thesissubtitle~ }\\
+}
+\end{center}
+\vspace*{\fill}
+\vspace*{\fill}
 \clearpage
 
 \vspace*{\fill}
@@ -72,7 +77,7 @@ Printed by \thesisprinter\ in \thesisprintloc\\
     {\Huge \thesistitle }\\[1em]
     {\huge \thesissubtitle }\\[5em]
     {\Large Proefschrift}\\[5em]
-    {\Large \parbox{0.65 \textwidth}{ter verkrijging van de graad van Doctor aan de Universiteit Leiden, op gezag van Rector Magnificus prof.\,mr. C.\,J.\,J.\,M.\ Stolker,
+    {\Large \parbox{0.59 \textwidth}{ter verkrijging van de graad van Doctor aan de Universiteit Leiden, op gezag van Rector Magnificus prof\@. mr\@. C.\,J.\,J.\,M\@. Stolker,
 volgens besluit van het College voor Promoties
 te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}}}\vfill
 	{\Large door}\\[3em]
@@ -111,6 +116,12 @@ te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}
 \emph{\thesisdedication}
 \end{center}
 
+% Restore geometry
+\medievalpage[9]
+\checkandfixthelayout
+\makeatletter
+\ch@ngetext
+\makeatletter
 \cleardoublepage
 
 %%%%%%%%%%%
@@ -120,13 +131,13 @@ te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}
 %% enable page numbering again, and use roman for the first few pages
 \hypersetup{pageanchor=true}
 
-\restoregeometry
 \setcounter{tocdepth}{1}
 %% Perhaps we want sections linking back to the TOC http://tex.stackexchange.com/questions/45603/hyperlink-to-the-toc-page http://tex.stackexchange.com/questions/32495/linking-the-section-text-to-the-toc
 \hypertarget{toc}{}
 \tableofcontents
 
-% clear the remaining
+% clear the remaining pages, reset style
 \cleardoublepage
+\pagestyle{ruled}
 %\clearemptydoublepage
 \pagenumbering{arabic}

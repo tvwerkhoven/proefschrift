@@ -9,7 +9,7 @@
 %% send a letter to Creative Commons, 171 Second Street, Suite 300, San 
 %% Francisco, California, 94105, USA.
 
-\documentclass[twoside]{book}
+\documentclass[twoside,onecolumn,openright,10pt]{memoir}
 \usepackage{proefschrift}
 
 %% Set languages for polyglossia %%
@@ -96,6 +96,7 @@ pdfproducer = {pdfLaTeX, version \gitAbbrevHash @ \gitAuthorIsoDate},
 
 %%% References %%%
 % Fix Cyrillic initials with {Смирнов, {\relax М} {\relax С}}, see https://www.tug.org/TUGboat/tb27-2/tb87hufflen.pdf
+\SingleSpacing
 \input{\texpath literature}
 
 \end{document}
