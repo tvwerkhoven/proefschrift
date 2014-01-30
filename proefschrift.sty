@@ -23,6 +23,9 @@
 \DeclareOption{doublespacing}{
   \@doublespacingtrue
 }
+\DeclareOption{singlespacing}{
+  \@doublespacingfalse
+}
 
 %% b5paper option -- set this paper true, the rest false
 \newif\if@bfivepaper\@bfivepaperfalse
@@ -38,11 +41,10 @@
   \@bfivepaperfalse
 }
 
-
-\ExecuteOptions{b5paper}
+\ExecuteOptions{b5paper,singlespacing}
 
 \ProcessOptions\relax
- 
+
 %%%%%%%%%%%%%%
 %% PACKAGES %%
 %%%%%%%%%%%%%%
@@ -445,7 +447,7 @@ bookmarksnumbered = true,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \if@doublespacing
-\doublespacing
+\DoubleSpacing
 \fi
 
 
