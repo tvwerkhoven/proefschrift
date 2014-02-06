@@ -20,6 +20,32 @@ Bibliography
 
 This template uses a modified version of yahapj.bst[2]. Other options are apj.bst, aa.bst, although these need to be modified for for use with jabbrv[3].
 
+LaTeX tricks
+============
+
+Bibliography
+------------
+
+To use non-latin characters as initials in bibliographic references, use something like
+
+    {Смирнов, {\relax М} {\relax С}}
+
+instead of 
+
+    {Смирнов, М С}.
+
+Note that М С here are the Cyrillic letters em and es. See https://www.tug.org/TUGboat/tb27-2/tb87hufflen.pdf for details.
+
+Page & paper size
+-----------------
+
+Dutch theses are generally printed on 240mm by 170mm paper. This has an aspect ratio of 1:1.41 or 1:√2. Other available paper sizes are listed in memoir man pages, Chapter 1. 
+
+Relevant papersizes can be:
+
+- smallroyalvopaper, 9.25in by 6.175in (235mm by 157mm, aspect 2:3)
+- royalvopaper, 10in by 6.25in (254mm by 159mm, aspect 1:1.6 (Golden section))
+
 Acknowledgments
 ===============
 
