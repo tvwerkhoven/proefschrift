@@ -13,23 +13,20 @@ PDFREADER = open
 AUXDIR = ./aux-dir/
 XELATEX = xelatex -interaction=batchmode -halt-on-error -output-directory=${AUXDIR}
 BIBTEX = bibtex
+LATEXMAKE = latexmk
 GIT = git
 
 # Branch to use for distribution
 DIST_BRANCH=master
 
-.PHONY: view tex gitdist distclean clean
+.PHONY: pdf view tar clean test recorder gitdist distclean
 
 all: pdf
 
 pdf: ${BASE}.pdf
 
 ${BASE}.pdf: ${BASE}.tex
-	${XELATEX} ${BASE}
-	${BIBTEX} ${AUXDIR}${BASE}
-	${XELATEX} ${BASE}
-	${XELATEX} ${BASE}
-	mv ${AUXDIR}/${BASE}.pdf .
+	${LATEXMAKE} -xelatex ${BASE}
 
 view: ${BASE}.pdf
 	$PDFREADER ${BASE}.pdf&
@@ -42,23 +39,17 @@ tar: ${BASE}.pdf
 	# tar jcf ${BASE}.tar.bz2 ${TARSOURCE}
 
 clean:
-	find ./ -iname '*.aux' | xargs rm
-	find ./ -iname '*.brf' | xargs rm
-	find ./ -iname '*.log' | xargs rm
-	find ./ -iname '*.lot' | xargs rm
-	find ./ -iname '*.out' | xargs rm
-	find ./ -iname '*.toc' | xargs rm
-	find ./ -iname '*.blg' | xargs rm
-	find ./ -iname '*.bbl' | xargs rm
-	find ./ -iname '*.lof' | xargs rm
-	find ./ -iname '*.xdv' | xargs rm
+	${LATEXMAKE} -c
 
 test: ${BASE}.tex
 	${XELATEX} --no-pdf ${BASE}
+
+recorder: ${BASE}.tex
+	${XELATEX} --no-pdf -recorder ${BASE}
 
 gitdist:
 	${GIT} archive ${DIST_BRANCH} --prefix='proefschrift/' --format=zip > dist/proefschrift_$$( ${GIT} describe --always --long ${DIST_BRANCH} ).zip
 
 distclean: clean
-	if [ -e ${BASE}.pdf ]; then rm ${BASE}.pdf; fi
+	${LATEXMAKE} -C
 
