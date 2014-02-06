@@ -221,7 +221,7 @@ bookmarksnumbered = true,
 \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
 
 %% Define marker commands iff draft is selected
-\if@thesisdrafttrue
+\if@thesisdraft
   \newcommand{\TODO}[1]{\textbf{TODO: #1}\xspace}
   \newcommand{\CHECK}[1]{\textbf{CHECK: #1}\xspace}
   \newcommand{\NB}[1]{\textbf{N.B.: #1}\xspace}
@@ -384,6 +384,5 @@ bookmarksnumbered = true,
 \if@doublespacing
 \DoubleSpacing
 \fi
-
 
 \endinput
