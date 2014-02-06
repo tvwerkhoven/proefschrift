@@ -67,10 +67,6 @@
 \usepackage[xetex,table,hyperref,x11names,svgnames]{xcolor}
 % Better number formatting
 \usepackage[mode=text,separate-uncertainty=true,list-units = single, range-units=single, multi-part-units=single]{siunitx}
-% For fancy headers 
-%\usepackage{fancyhdr}
-% Setup page size specifically
-%\usepackage[xetex,twoside]{geometry}
 % for source code stuff
 %\usepackage{listings}
 % shows various LaTeX layout settings http://ftp.snt.utwente.nl/pub/software/tex/macros/latex/contrib/layouts/
@@ -95,8 +91,6 @@
 \usepackage{doi}
 % creative commons icons \cclogo, \ccAttribution, \ccShareAlike, \ccNoDerivates, \ccNonCommercial -- or \ccby, \ccbysa, \ccbync
 \usepackage{ccicons}
-\usepackage{gitinfo}
-\usepackage{setspace}
 \usepackage{framed}
 
 %% Subfigures (use subcaption instead of subfig, see <http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig>, <http://tex.stackexchange.com/questions/19554/vertical-alignment-with-subfig-and-pstricks>)
@@ -121,8 +115,7 @@
 % Debug, print lipsum text
 \usepackage{kantlipsum}
 
-%%% Hyperref setup -- fixed parameters %%%
-
+%% Hyperref setup -- fixed parameters
 \hypersetup{
 colorlinks = true,
 pdfborder = true,
@@ -135,7 +128,7 @@ unicode = true,
 bookmarksnumbered = true,
 }
 
-% Backref options from <http://www.latex-community.org/forum/viewtopic.php?f=5&t=3670&start=10>
+%% Backref options from <http://www.latex-community.org/forum/viewtopic.php?f=5&t=3670&start=10>
 \renewcommand*{\backreflastsep}{, }
 \renewcommand*{\backreftwosep}{, }
 \renewcommand*{\backref}[1]{}
@@ -191,13 +184,9 @@ bookmarksnumbered = true,
 \setlength{\parindent}{0ex}
 \setlength{\parskip}{1ex}
 
-%\setlength{\marginparwidth}{70pt}
 % theses are 170 × 240 mm^2 = 6.69 × 9.45 in^2
 % B5 is 176 × 250 (surface diff = 7.8%)
 % msmallroyalvopaper is 156 × 234 (surface diff = 10%)
-%\usepackage{octavo}
-%\usepackage[b5paper,layout=b5paper]{geometry} 
-%\usepackage[a4paper,layout=b5paper,layouthoffset=17mm,layoutvoffset=23.5mm,showcrop]{geometry} 
 
 % Setting page size, memman.pdf Sect. 2.6
 % Based on https://tex.stackexchange.com/questions/55502/modern-book-design-margins-and-typed-area
@@ -209,20 +198,18 @@ bookmarksnumbered = true,
 %% CUSTOM COMMANDS %%
 %%%%%%%%%%%%%%%%%%%%%
 
-%\renewcommand{\captionfont}{\small}	% use a small font for captions
+%% Some path-shortcuts
+\newcommand{\imgpath}{./img/}			% Path to images
+\newcommand{\plotpath}{./plots/}		% Path to plots
+\newcommand{\texpath}{./tex/}			% Path to TeX files
+\newcommand{\chapimgpath}{\imgpath}		% Chapter-specific image path
+\newcommand{\chapplotpath}{\imgpath}	% Chapter-specific plot path
 
-% Some path-shortcuts
-\newcommand{\imgpath}{./img/}
-\newcommand{\chapimgpath}{\imgpath}
-\newcommand{\plotpath}{./plots/}
-\newcommand{\chapplotpath}{\imgpath}
-\newcommand{\texpath}{./tex/}
-
-% Some command abbreviations
+%% Some command abbreviations
 \newcommand{\tsup}[1]{\textsuperscript{#1}}
 \newcommand{\tsub}[1]{\textsubscript{#1}}
 
-% TODO: better options for vectors/matrices?
+%% TODO: better options for vectors/matrices?
 %\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}%
 %\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}%
 %\newcommand{\Fourier}{\mathcal{F}}

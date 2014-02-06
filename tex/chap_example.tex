@@ -10,9 +10,6 @@
 \renewcommand{\chapimgpath}{\imgpath chap_example/}
 \renewcommand{\chapplotpath}{\imgpath chap_example/}
 
-% Command specific for this chapter (could also go in main tex file)
-\newcommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
-
 \chapter{Lorem ipsum dolor eu facilisis nulla}
 \label{chap:lorem_ipsum_dolor}
 
@@ -116,16 +113,16 @@ Maecenas a eros odio. Nulla odio arcu, ultrices eu pellentesque in, auctor eu es
 
 Donec cursus suscipit elit vestibulum porta. Maecenas cursus sapien a urna ornare vel lacinia risus tristique. Nunc eu dolor sit amet felis sagittis sagittis eu vel sem. Suspendisse eleifend, neque malesuada tristique ultrices, mi ligula ornare velit, non rhoncus libero quam suscipit diam. Maecenas malesuada dui dolor. In hac habitasse platea dictumst. Nam id enim lectus, in bibendum metus. Suspendisse imperdiet lectus imperdiet velit feugiat aliquet. Nulla rhoncus libero nec libero cursus tincidunt. Donec aliquam pulvinar posuere. Sed enim mauris, varius et convallis accumsan, imperdiet ut nulla. Aenean orci felis, dapibus in tempus nec, fringilla in nisi. 
 
-\newcommand{\mcol}[2]{\multicolumn{#1}{c}{#2}}
-\newcommand{\mcoll}[2]{\multicolumn{#1}{@{}l@{}}{#2}}
+\providecommand{\mcol}[2]{\multicolumn{#1}{c}{#2}}
+\providecommand{\mcoll}[2]{\multicolumn{#1}{@{}l@{}}{#2}}
 
-\newcommand{\emptycell}{\mcol{3}{---}}
+\providecommand{\emptycell}{\mcol{3}{---}}
 % This is a hyphen minus for negative numbers
 % Hyphen minus: -, minus: −, dash: -
-\newcommand{\minussign}{-}
+\providecommand{\minussign}{-}
 
-\newcommand{\tabval}[3]{#1.&#2 & ± #3}
-\newcommand{\tabvalb}[4]{#1.&#2&\makebox[0pt][l]{\tsub{$-$#3}}\tsup{+#4}}
+\providecommand{\tabval}[3]{#1.&#2 & ± #3}
+\providecommand{\tabvalb}[4]{#1.&#2&\makebox[0pt][l]{\tsub{$-$#3}}\tsup{+#4}}
 
 \begin{table}
 	% See https://chenfuture.wordpress.com/2007/09/20/latex-tabular-more/

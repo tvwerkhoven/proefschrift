@@ -81,14 +81,15 @@ pdftitle = {\thesistitle\ -- \thesissubtitle},
 pdfauthor = {\thesisauthor},
 %pdfsubject = {Subject goes here},
 % Include revision and date in producer
-pdfproducer = {pdfLaTeX, version \gitAbbrevHash @ \gitAuthorIsoDate},
+%pdfproducer = {pdfLaTeX, version},
 %pdfkeywords = {Keywords, go, here},
 }
 
 %%% Use specific commands for this thesis %%%
 \newcommand\rn{\ensuremath{r_\text{0}}\xspace}
+\newcommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
 
-%%% Specific non-SI units for this thesis %%%
+%%% Specific non-SI units for this thesis for siunitx %%%
 %\DeclareSIUnit\mag{mag}
 %\DeclareSIUnit\year{yr}
 \DeclareSIUnit\MSun{\ensuremath{M_\text{Sun}}}
@@ -97,14 +98,16 @@ pdfproducer = {pdfLaTeX, version \gitAbbrevHash @ \gitAuthorIsoDate},
 %\newcommand\hubble{\emph{Hubble Space Telescope}\xspace}
 %\newcommand\kepler{\emph{Kepler}\xspace}
 
-%%% Defining a custom abbreviation %%%
+%%% Defining a custom abbreviation for jabbrv %%%
 % \DefineJournalAbbreviation{Test}{Tes} % <-- Note that there is no period!
 % Define custom commands used in the BibTeX file:
 % \newcommand{\tjri}{Test Journal of Reference Information}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% Titlepages etc %%%
+%%% Titlepages %%%
 \input{\texpath titlepage}
 
 %%% Main content chapters %%%
