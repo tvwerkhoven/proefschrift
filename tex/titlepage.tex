@@ -9,8 +9,8 @@
 %% send a letter to Creative Commons, 171 Second Street, Suite 300, San 
 %% Francisco, California, 94105, USA.
 
-\pagenumbering{roman}
-\pagestyle{empty}
+\frontmatter
+\pagestyle{titlestyle}
 %%% disable page numbering
 \hypersetup{pageanchor=false}
 %%% Set small, symmetric 2cm margins
@@ -136,8 +136,7 @@ te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}
 \hypertarget{toc}{}
 \tableofcontents
 
-% clear the remaining pages, reset style
+%% Clear the remaining pages, reset style
+\pagestyle{thesisstyle}
+\mainmatter
 \cleardoublepage
-\pagestyle{ruled}
-%\clearemptydoublepage
-\pagenumbering{arabic}

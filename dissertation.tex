@@ -9,7 +9,27 @@
 %% send a letter to Creative Commons, 171 Second Street, Suite 300, San 
 %% Francisco, California, 94105, USA.
 
+%% Use memoir document class
 \documentclass[twoside,onecolumn,openright,10pt]{memoir}
+
+%% Set paper size & geometry. The former is only set once, the latter more often
+\newcommand\thesispapersize{%
+  % Dutch proefschrift size:
+  % \setstocksize{240mm}{170mm}
+  % \settrimmedsize{240mm}{170mm}{*}
+  % \stocksmallroyalvo
+  % \pagesmallroyalvo
+  \stockroyalvo
+  \pageroyalvo
+}
+\newcommand\thesisgeometry{\medievalpage[9]}
+%% Set document-specific styles. See Memoir manual table 7.1
+\aliaspagestyle{titlestyle}{cleared}	% Style for title pages
+\aliaspagestyle{part}{cleared}			% Style for `part' pages
+\aliaspagestyle{chapter}{cleared}		% Style for `chapter' pages
+\aliaspagestyle{thesisstyle}{ruled}		% Style for regular pages
+
+%% Load proefschrift options & packages
 \usepackage{proefschrift}
 
 %% Set languages for polyglossia %%
@@ -95,8 +115,6 @@ pdfproducer = {pdfLaTeX, version \gitAbbrevHash @ \gitAuthorIsoDate},
 \input{\texpath app_example.tex}
 
 %%% References %%%
-% Fix Cyrillic initials with {Смирнов, {\relax М} {\relax С}}, see https://www.tug.org/TUGboat/tb27-2/tb87hufflen.pdf
-\SingleSpacing
 \input{\texpath literature}
 
 \end{document}

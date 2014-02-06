@@ -27,21 +27,13 @@
   \@doublespacingfalse
 }
 
-%% b5paper option -- set this paper true, the rest false
-\newif\if@bfivepaper\@bfivepaperfalse
-\DeclareOption{b5paper}{
-  \@bfivepapertrue
-  \@afourpaperfalse
+%% draft option
+\newif\if@thesisdraft\@thesisdraftfalse
+\DeclareOption{draft}{
+  \@thesisdrafttrue
 }
 
-%% a5paper option -- set this paper true, the rest false
-\newif\if@afourpaper\@afourpaperfalse
-\DeclareOption{a4paper}{
-  \@afourpapertrue
-  \@bfivepaperfalse
-}
-
-\ExecuteOptions{b5paper,singlespacing}
+\ExecuteOptions{singlespacing}
 
 \ProcessOptions\relax
 
@@ -209,18 +201,9 @@ bookmarksnumbered = true,
 
 % Setting page size, memman.pdf Sect. 2.6
 % Based on https://tex.stackexchange.com/questions/55502/modern-book-design-margins-and-typed-area
-\if@bfivepaper
-	\setstocksize{240mm}{170mm}
-	\settrimmedsize{240mm}{170mm}{*}
-	\medievalpage[9]
-	\checkandfixthelayout
-\fi
-\if@afourpaper
-	\setstocksize{297mm}{210mm}
-	\settrimmedsize{297mm}{210mm}{*}
-	\medievalpage[9]
-	\checkandfixthelayout
-\fi
+\thesispapersize
+\thesisgeometry
+\checkandfixthelayout
 
 %%%%%%%%%%%%%%%%%%%%%
 %% CUSTOM COMMANDS %%
@@ -249,19 +232,12 @@ bookmarksnumbered = true,
 
 \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
 
-%\newcommand{\mcol}[2]{\multicolumn{#1}{c}{#2}}
-%\newcommand{\mcoll}[2]{\multicolumn{#1}{@{}l@{}}{#2}}
-%\newcommand{\tabval}[3]{#1.&#2 & ± #3}
-%\newcommand{\tabvalb}[4]{#1.&#2&\makebox[0pt][l]{\tsub{\minus #3}}\tsup{+#4}}
-
-\newcommand{\TODO}[1]{\textbf{TODO: #1}\xspace}
-\newcommand{\CHECK}[1]{\textbf{CHECK: #1}\xspace}
-\newcommand{\NB}[1]{\textbf{N.B.: #1}\xspace}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% WORDS/DEFINITION MACROS %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Define marker commands iff draft is selected
+\if@thesisdrafttrue
+  \newcommand{\TODO}[1]{\textbf{TODO: #1}\xspace}
+  \newcommand{\CHECK}[1]{\textbf{CHECK: #1}\xspace}
+  \newcommand{\NB}[1]{\textbf{N.B.: #1}\xspace}
+\fi
 
 % Back reference from sections to TOC character (hand symbol in Garamond Premier Pro)
 \newcommand{\hyperback}{\char"E1CD}
@@ -313,47 +289,13 @@ bookmarksnumbered = true,
 %% FANCY HEADERS %%
 %%%%%%%%%%%%%%%%%%%
 
-%\pagestyle{fancy} 					% use fancy headers by default
-\pagestyle{ruled}
-
-%%% fancy pagestyle options
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\fancyhf{}							% empty pagestyle first, then manually set on next lines
-%\fancyfoot[LE,RO]{\thepage} 			% page numbers at the bottom left and right 
-%\fancyhead[LE]{\leftmark} 			% title left page top left
-%\fancyhead[RO]{\rightmark}			% section right page top right
-
-\renewcommand{\chaptermark}[1]{ 
-%\markboth{\scshape \MakeUppercase{\thechapter{}. #1}}{} 
-\markboth{\textit{#1}}{} 
-} 
-\renewcommand{\sectionmark}[1]{ 
-%\markright{\scshape \MakeUppercase{\thesection{} #1}}
-\markright{\textit{\thesection{} #1}}
-} 
+\pagestyle{thesisstyle}
 
 %\definecolor{LightGray}{rgb}{0.85, 0.85, 0.85}
 %\newcommand{\pagenumber}{%
 %\ifnum \value{page} = 13 \thepage% 13\textcolor{LightGray}{37}
 %\else \thepage%
 %\fi%
-%}
-
-%%% yes headerrule, no footerrule 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\renewcommand{\headrulewidth}{0.4pt}
-%\renewcommand{\footrulewidth}{0.0pt}
-
-%%% Set plain pagestyle here
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\fancypagestyle{plain}{
-%\fancyhf{}
-%\fancyfoot[LE,RO]{\thepage} 		% page numbers at the bottom left and right 
-%% reset the rule width for header and footer
-%\renewcommand{\headrulewidth}{0pt}
 %}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -444,6 +386,7 @@ bookmarksnumbered = true,
 \appendix%
 % Set \chapord command to null to suppress 'nd chapter' output
 \renewcommand{\chapord}[1]{}%
+\backmatter
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
