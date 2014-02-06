@@ -118,14 +118,19 @@ te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}
   \emph{\thesisdedication}
 \end{center}
 
-% Restore geometry
-\medievalpage[9]
+%%%%%%%%%%%
+%%% TOC %%%
+%%%%%%%%%%%
+
+%% Restore page/margin geometry
+\thesisgeometry
 \checkandfixthelayout
 \makeatletter
 \ch@ngetext
 \makeatletter
 \cleardoublepage
-%% enable page numbering again, and use roman for the first few pages
+
+%% Enable page numbering again
 \hypersetup{pageanchor=true}
 
 \setcounter{tocdepth}{1}
