@@ -281,6 +281,10 @@ bookmarksnumbered = true,
 %%%%%%%%%%%%%%%%%%%
 
 \pagestyle{thesisstyle}
+% Pagestyle like plain, except page numbers at far edges (for chapers)
+\makepagestyle{pageonly}
+\makeevenfoot{pageonly}{\thepage}{}{}
+\makeoddfoot{pageonly}{}{}{\thepage}
 
 %\definecolor{LightGray}{rgb}{0.85, 0.85, 0.85}
 %\newcommand{\pagenumber}{%
