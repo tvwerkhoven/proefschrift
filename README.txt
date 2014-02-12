@@ -46,6 +46,15 @@ Relevant papersizes can be:
 - smallroyalvopaper, 9.25in by 6.175in (235mm by 157mm, aspect 2:3)
 - royalvopaper, 10in by 6.25in (254mm by 159mm, aspect 1:1.6 (Golden section))
 
+Spelling & Style check
+======================
+
+Spell checkers are available in many text editors by default, however several tools exist to check the style of text as well. Some suggestions:
+
+- LanguageTool[8] - Java tool to check style for OpenOffice or command line
+- TextLint[9] - style checker plugin for emacs/vi/textmate or as standalone
+- GNU diction[10] - command line tools
+
 Acknowledgments
 ===============
 
@@ -71,6 +80,9 @@ References
 [5] http://www.tug.dk/FontCatalogue/mathfonts.html
 [6] http://tex.stackexchange.com/questions/58098/what-are-all-the-font-styles-i-can-use-in-math-mode
 [7] http://latex-project.org/papers/unicode-mathematics-in-LaTeX.pdf
+[8] https://www.languagetool.org/
+[9] http://scg.unibe.ch/research/textlint
+[10] https://www.gnu.org/software/diction/diction.html
 
 License
 =======
