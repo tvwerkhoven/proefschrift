@@ -58,11 +58,18 @@ Some rights reserved -- \url{creativecommons.org/licenses/by-nc-sa/3.0/}\\
 \textsc{isbn-13}: \href{http://www.google.com/?q=\thesisisbna}{\thesisisbna}\\
 \textsc{isbn-10}: \href{http://www.google.com/?q=\thesisisbnb}{\thesisisbnb}\\
 
-Printed by \thesisprinter\ in \thesisprintloc\\
+\ifdefined\thesisprinter
+Printed by \thesisprinter\
+\fi
+\ifdefined\thesisprintloc
+in \thesisprintloc\\
+\fi
 
 \thesisprintdetails\\
 
+\ifdefined\thesiscoverimgdesc%
 \emph{Cover image:} \thesiscoverimgdesc\\
+\fi
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -94,9 +101,11 @@ te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}
 \thesispromotores}\\[1cm]
 }
 {%
+\ifdefined\thesiscomittee%
 \large%
 \makebox[0pt][l]{Promotiecommissie:}\hspace{3.6cm}\parbox[t]{0.7\textwidth}{%
 \thesiscomittee}
+\fi
 }
 \vfill
 
