@@ -45,7 +45,7 @@
 
 \usepackage{graphicx}
 % For clickable URLS/references/etc. within the PDF document
-\usepackage[xetex, colorlinks, breaklinks, hyperindex, pdfpagelabels, hyperfootnotes=false, pagebackref]{hyperref}
+\usepackage[xetex, breaklinks, hyperindex, pdfpagelabels, hyperfootnotes=false, pagebackref]{hyperref}
 % make sure references to figures and tables point ABOVE the floats, not below
 %\usepackage[all]{hypcap}
 % Math fonts, use mathspec with unicode-math and unicode math font without fontspec and bm
@@ -121,7 +121,7 @@
 
 %% Hyperref setup -- fixed parameters
 \hypersetup{
-colorlinks = true,
+colorlinks = false,
 pdfborder = true,
 linkcolor = red,          % color of internal links
 citecolor = red,          % color of links to bibliography
@@ -167,7 +167,7 @@ bookmarksnumbered = true,
 %\setmainfont[Numbers={OldStyle}]{Marion} % 7.5/10
 \setsansfont[Scale=MatchLowercase]{Helvetica Neue}
 \setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}
-\setmathfont{Cambria Math}
+\setmathfont[Scale=MatchLowercase]{Cambria Math}
 %\setmathfont{XITS Math}
 %\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
 %\setmathfont{STIXGeneral}
@@ -239,7 +239,7 @@ bookmarksnumbered = true,
 
 % Figure references
 \newcommand{\figref}[1]{Fig.~\ref{#1}}
-\newcommand{\Figref}[1]{Figure~\ref{#1}}
+\newcommand{\Figref}[1]{\figurename~\ref{#1}}
 \newcommand{\figsref}[2]{Figs.~\ref{#1}--\ref{#2}}
 
 % Equation references
@@ -286,13 +286,6 @@ bookmarksnumbered = true,
 \makeevenfoot{pageonly}{\thepage}{}{}
 \makeoddfoot{pageonly}{}{}{\thepage}
 
-%\definecolor{LightGray}{rgb}{0.85, 0.85, 0.85}
-%\newcommand{\pagenumber}{%
-%\ifnum \value{page} = 13 \thepage% 13\textcolor{LightGray}{37}
-%\else \thepage%
-%\fi%
-%}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CHAPTER / SECTION HEADERS %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -307,82 +300,82 @@ bookmarksnumbered = true,
     
 %%% New chapter markup here
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\newfontface\chapterfont[Contextuals={WordInitial,WordFinal}]{Hoefler Text}
+%\newfontface\chapterfont[Contextuals={WordInitial,WordFinal}]{Hoefler Text}
 
-\renewcommand{\@makechapterhead}[1]{%
-  \vspace*{100\p@}%
-  {\parindent \z@ \raggedright \chapterfont
-    \ifnum \c@secnumdepth >\m@ne
-      \if@mainmatter
-        \huge\bfseries \@chapapp\space \thechapter
-        \par\nobreak
-        \vskip 20\p@
-      \fi
-    \fi
-    \interlinepenalty\@M
-    \Huge \bfseries #1\par\nobreak
-    \vskip 40\p@
-  }}
+%\renewcommand{\@makechapterhead}[1]{%
+%  \vspace*{100\p@}%
+%  {\parindent \z@ \raggedright \chapterfont
+%    \ifnum \c@secnumdepth >\m@ne
+%      \if@mainmatter
+%        \huge\bfseries \@chapapp\space \thechapter
+%        \par\nobreak
+%        \vskip 20\p@
+%      \fi
+%    \fi
+%    \interlinepenalty\@M
+%    \Huge \bfseries #1\par\nobreak
+%    \vskip 40\p@
+%  }}
 
 
-\newlength{\chapwidth}
-\newlength{\titlewidth}
-\newsavebox{\chapbox}
-\renewcommand{\@makechapterhead}[1]{%
-% we want <chapter> - <title>, and <title> is in a parbox
-% to get the width of the parbox, we measure the width of <chapter> and 
-% set the width of the parbox to <textwidth>-<chapwidth>
-  %\settowidth{\chapwidth}{\scalebox{4}{\Huge\scshape \thechapter} \chapord{\value{chapter}}}
-  \sbox{\chapbox}{\scalebox{6}{\Huge\scshape \thechapter}}
-  \settowidth{\chapwidth}{\usebox{\chapbox}}
-  \setlength{\titlewidth}{\textwidth}
-  \addtolength{\titlewidth}{-\chapwidth}
-
-  \vspace*{50\p@}%
-  {\parindent \z@ \raggedright \normalfont
-    \vspace{5pt}%                                 	% add vertical space
-	\usebox{\chapbox}%\chapord{\value{chapter}}
-	\parbox[b]{\titlewidth}{\raggedleft \Huge \scshape #1}}%\par <Chapter> title 
-%	\parbox[b]{\titlewidth}{\raggedright \Huge \scshape #1}%
-%	\raggedleft\scalebox{4}{\Huge\scshape \thechapter}%
-%	\scalebox{-4}[4]{\color{LightGray}\Huge\scshape \thechapter}}%\par <Chapter> title 
-    \vspace{5pt}%                                 % add vertical space
-    \hrule                                        % horizontal rule
-    \nobreak
-    \vskip 40\p@
-  }
+%\newlength{\chapwidth}
+%\newlength{\titlewidth}
+%\newsavebox{\chapbox}
+%\renewcommand{\@makechapterhead}[1]{%
+%% we want <chapter> - <title>, and <title> is in a parbox
+%% to get the width of the parbox, we measure the width of <chapter> and 
+%% set the width of the parbox to <textwidth>-<chapwidth>
+%  %\settowidth{\chapwidth}{\scalebox{4}{\Huge\scshape \thechapter} \chapord{\value{chapter}}}
+%  \sbox{\chapbox}{\scalebox{6}{\Huge\scshape \thechapter}}
+%  \settowidth{\chapwidth}{\usebox{\chapbox}}
+%  \setlength{\titlewidth}{\textwidth}
+%  \addtolength{\titlewidth}{-\chapwidth}
+%
+%  \vspace*{50\p@}%
+%  {\parindent \z@ \raggedright \normalfont
+%    \vspace{5pt}%                                 	% add vertical space
+%	\usebox{\chapbox}%\chapord{\value{chapter}}
+%	\parbox[b]{\titlewidth}{\raggedleft \Huge \scshape #1}}%\par <Chapter> title 
+%%	\parbox[b]{\titlewidth}{\raggedright \Huge \scshape #1}%
+%%	\raggedleft\scalebox{4}{\Huge\scshape \thechapter}%
+%%	\scalebox{-4}[4]{\color{LightGray}\Huge\scshape \thechapter}}%\par <Chapter> title 
+%    \vspace{5pt}%                                 % add vertical space
+%    \hrule                                        % horizontal rule
+%    \nobreak
+%    \vskip 40\p@
+%  }
 
 %%% We need this to get a fancy 'st', 'nd' 'rd' or 'th' chapter postfix
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\chapsty{\LARGE \itshape}
-\newlength{\chapup}
-\newlength{\chapheight}
-\settoheight{\chapup}{\scalebox{4}{\Huge\scshape 1}}
-\settoheight{\chapheight}{\chapsty nd \@chapapp}
-\addtolength{\chapup}{-\chapheight}
-
-\newcommand{\chapord}[1]{
-	\raisebox{\chapup}{\makebox(0,0)[lb]{\hspace{-10pt}\chapsty \postfix{#1} \@chapapp}}
-}
-\newcommand{\postfix}[1]{
-\ifnum #1 = 1 st
-\else
- \ifnum #1 = 2 nd
- \else
-  \ifnum #1 = 3 rd
-  \else th
-  \fi
- \fi
-\fi
-}
+%\def\chapsty{\LARGE \itshape}
+%\newlength{\chapup}
+%\newlength{\chapheight}
+%\settoheight{\chapup}{\scalebox{4}{\Huge\scshape 1}}
+%\settoheight{\chapheight}{\chapsty nd \@chapapp}
+%\addtolength{\chapup}{-\chapheight}
+%
+%\newcommand{\chapord}[1]{
+%	\raisebox{\chapup}{\makebox(0,0)[lb]{\hspace{-10pt}\chapsty \postfix{#1} \@chapapp}}
+%}
+%\newcommand{\postfix}[1]{
+%\ifnum #1 = 1 st
+%\else
+% \ifnum #1 = 2 nd
+% \else
+%  \ifnum #1 = 3 rd
+%  \else th
+%  \fi
+% \fi
+%\fi
+%}
 
 %%% Disable some stuff for appendix
-\newcommand{\beginappendix}{%
-\appendix%
-% Set \chapord command to null to suppress 'nd chapter' output
-\renewcommand{\chapord}[1]{}%
-\backmatter
-}
+%\newcommand{\beginappendix}{%
+%\appendix%
+%% Set \chapord command to null to suppress 'nd chapter' output
+%%\renewcommand{\chapord}[1]{}%
+%\backmatter
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%% END PREAMBLE %%%%%%%%%%%%%%%%%%% 
