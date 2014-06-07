@@ -30,8 +30,8 @@
 %%%%%%%%%%%%%%%%%
 
 %%% First page, cover image, do not fit paper to image
-\includepdf[fitpaper=false]{\imgpath \thesiscoverimg}
-\cleardoublepage
+%\includepdf[fitpaper=false]{\imgpath \thesiscoverimg}
+%\cleardoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%% GENERAL TITLEPAGE %%%
@@ -53,10 +53,14 @@
 Some rights reserved -- \url{creativecommons.org/licenses/by-nc-sa/3.0/}\\
 
 % Hack from http://www.tex.ac.uk/cgi-bin/texfaq2html?label=topgraph
-\thesisonline\\
+\ifdefined\thesisonline
+\thesisonline~\\
+\fi
 
-\textsc{isbn-13}: \href{http://www.google.com/?q=\thesisisbna}{\thesisisbna}\\
-\textsc{isbn-10}: \href{http://www.google.com/?q=\thesisisbnb}{\thesisisbnb}\\
+\ifdefined\thesisisbna
+\textsc{ISBN-10}: \href{http://www.google.com/?q=\thesisisbna}{\thesisisbna}\\
+\fi
+\textsc{ISBN-13}: \href{http://www.google.com/?q=\thesisisbnb}{\thesisisbnb}\\
 
 \ifdefined\thesisprinter
 Printed by \thesisprinter
@@ -65,7 +69,7 @@ Printed by \thesisprinter
 \thesisprintdetails\\
 
 \ifdefined\thesiscoverimgdesc%
-\emph{Cover image:} \thesiscoverimgdesc\\
+\emph{Cover:} \thesiscoverimgdesc\\
 \fi
 \clearpage
 
@@ -81,27 +85,39 @@ Printed by \thesisprinter
     {\Huge \thesistitle }\\[1em]
     {\huge \thesissubtitle }\\[5em]
     {\Large Proefschrift}\\[5em]
-    {\Large \parbox{0.59 \textwidth}{ter verkrijging van de graad van Doctor aan de Universiteit Leiden, op gezag van Rector Magnificus prof\@. mr\@. C.\,J.\,J.\,M\@. Stolker,
+    {\Large \parbox{0.55 \textwidth}{ter verkrijging van de graad van Doctor aan de Universiteit Leiden, op gezag van Rector Magnificus prof\@. mr\@. C.\,J.\,J.\,M\@. Stolker,
 volgens besluit van het College voor Promoties
-te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}}}\vfill
+te verdedigen op donderdag \linebreak\centerline{26 juni 2014 klokke 10.00 uur}}}\vfill
 	{\Large door}\\[3em]
-	{\parbox[c][][c]{0.65 \textwidth}{\centering\Large\thesisauthor\\ \thesisauthorborn}}
+	{\LARGE \thesisauthorfull}\\[3em]
+	{\Large \thesisauthorborn}
+%	{\parbox[c][][c]{0.65 \textwidth}{\centering\Large\thesisauthor\\ \thesisauthorborn}}
   }
 \end{center}
 
 \clearpage
 
-%%% Promotor(s) / promotiecommissie
-{%
-\large%
-\makebox[0pt][l]{Promotoren:}\hspace{3.6cm}\parbox[t]{0.7\textwidth}{%
-\thesispromotores}\\[1cm]
-}
+%%% Promotor(s) / promotiecommissie -- centered style
+%\begin{center}
+%\large%
+%\makebox[0pt][r]{Promotoren: }\makebox[0pt][l]{\parbox[t]{0.5\textwidth}{%
+%\thesispromotores}}\\[1cm]
+%\makebox[0pt][r]{Promotiecommissie: }\makebox[0pt][l]{\parbox[t]{0.5\textwidth}{%
+%\thesiscomittee}}
+%\end{center}
+
+%%% Promotor(s) / promotiecommissie -- classical left-aligned style
 {%
 \ifdefined\thesiscomittee%
 \large%
+\makebox[0pt][l]{Promotoren:}\hspace{3.6cm}\parbox[t]{0.7\textwidth}{%
+\thesispromotores}\\[1cm]
 \makebox[0pt][l]{Promotiecommissie:}\hspace{3.6cm}\parbox[t]{0.7\textwidth}{%
 \thesiscomittee}
+\else
+\large%
+{Promotoren:}\quad\parbox[t]{0.7\textwidth}{%
+\thesispromotores}\\[1cm]
 \fi
 }
 \vfill
@@ -117,7 +133,8 @@ te verdedigen op zondag \linebreak\centerline{1 september 2013 klokke 10.00 uur}
 \begin{center}
   \vspace*{0.25\textheight}
   
-  \emph{\thesisproverb}
+  \emph{\thesisproverb}\\[1em]
+  \thesisproverbauthor
   
   \vspace*{0.5\textheight}
 
