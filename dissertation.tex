@@ -121,10 +121,16 @@ pdfauthor = {\thesisauthor},
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% Fix for controlling PDF bookmark levels (only required if using multiple parts)
+\ChapterOutsidePart 
+
 %%% Titlepages %%%
+\frontmatter
 \input{\texpath titlepage}
 
 %%% Main content chapters %%%
+\mainmatter
+\ChapterInsidePart
 \part{First part}
 \input{\texpath chap_example.tex}
 
@@ -132,7 +138,10 @@ pdfauthor = {\thesisauthor},
 \input{\texpath chap_example.tex}
 
 %%% Appendices %%%
-\beginappendix
+% Use this: http://www.latex-community.org/forum/viewtopic.php?f=5&t=2674
+\ChapterOutsidePart
+\backmatter
+\SingleSpacing
 \input{\texpath app_example.tex}
 
 %%% References %%%
