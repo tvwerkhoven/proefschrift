@@ -44,78 +44,15 @@
 \aliaspagestyle{chapter}{cleared}		% Style for `chapter' pages
 \aliaspagestyle{thesisstyle}{ruled}		% Style for regular pages
 
+%% Chapter styles, see Memoir manual Appendix B
+\chapterstyle{veelo}
+\renewcommand*{\chaptitlefont}{\normalfont\Huge\bfseries\flushright}
+
 %% Load proefschrift options & packages
-\usepackage{proefschrift}
+\usepackage[singlespacing]{proefschrift}
 
-%% Set languages for polyglossia %%
-\setdefaultlanguage{british}
-\setotherlanguage{dutch}
-\setotherlanguage{russian}
-
-%% Defining custom hyphenations %%
-\hyphenation{exo-pla-net exo-pla-nets exo-moon exo-moons}
-
-%% Define constants for this thesis %%
-\newcommand\thesiscoverimg{placeholder.pdf}
-
-\newcommand\thesistitle{Title}
-\newcommand\thesissubtitle{subtitle} % Use a space ~ for no subtitle
-
-\newcommand\thesisyear{\the\year}
-\newcommand\thesisauthor{John Doe}
-\newcommand\thesisonline{Available online at \url{google.com}}
-\newcommand\thesisisbna{65-432-1234-5}
-\newcommand\thesisisbnb{987-65-432-1234-5}
-\newcommand\thesisprinter{Xerox, Utrecht, The Netherlands}
-\newcommand\thesisprintdetails{%
-Thesis printed on FSC recycled paper χ using ink X, \\
-typeset in fonts Garamond Premier Pro, Helvetica Neue and Monaco}
-\newcommand\thesiscoverimgdesc{schematic illustration of the optical setup used in this work.}
-
-\newcommand\thesisauthorborn{geboren te Jerusalem in 4}
-
-\newcommand\thesispromotores{%
-prof.\,dr.~Jane~Doe\\
-prof.\,dr.~John~Smith}
-\newcommand\thesiscomittee{%
-prof.\,dr.~Jane~Doe\\
-prof.\,dr.~John~Smith\\
-prof.\,dr.~Juan~Santiago\\
-prof.\,dr.~Bo~Xi\\
-prof.\,dr.~Aлександр~Пехтолд\\
-prof.\,dr.~Sofia~Johnson}
-\newcommand\thesisfunding{This research is supported by the XXX, which is part of the YYY and partly funded by the ZZZ (project number \num{12345}).}
-
-\newcommand\thesisproverb{Done is better than perfect}
-\newcommand\thesisdedication{For my dog}
-
-%%% Hyperref setup -- custom parameters %%%
-\hypersetup{
-pdftitle = {\thesistitle\ -- \thesissubtitle},
-pdfauthor = {\thesisauthor},
-%pdfsubject = {Subject goes here},
-% Include revision and date in producer
-%pdfproducer = {pdfLaTeX, version},
-%pdfkeywords = {Keywords, go, here},
-}
-
-%%% Use specific commands for this thesis %%%
-\newcommand\rn{\ensuremath{r_\text{0}}\xspace}
-\newcommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
-
-%%% Specific non-SI units for this thesis for siunitx %%%
-%\DeclareSIUnit\mag{mag}
-%\DeclareSIUnit\year{yr}
-\DeclareSIUnit\MSun{\ensuremath{M_\text{Sun}}}
-
-%%% Specific common names/words for this thesis %%%
-%\newcommand\hubble{\emph{Hubble Space Telescope}\xspace}
-%\newcommand\kepler{\emph{Kepler}\xspace}
-
-%%% Defining a custom abbreviation for jabbrv %%%
-% \DefineJournalAbbreviation{Test}{Tes} % <-- Note that there is no period!
-% Define custom commands used in the BibTeX file:
-% \newcommand{\tjri}{Test Journal of Reference Information}
+%%% Specific commands for this thesis %%%
+\input{dissertation_config.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}

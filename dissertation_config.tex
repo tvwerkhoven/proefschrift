@@ -1,0 +1,109 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = xelatex
+%
+%% Copyright 2014 Tim van Werkhoven (t.i.m.vanwerkhoven@gmail.com)
+%% 
+%% This work is licensed under the Creative Commons
+%% Attribution-Noncommercial-Share Alike 3.0 Unported License. To view a copy
+%% of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or 
+%% send a letter to Creative Commons, 171 Second Street, Suite 300, San 
+%% Francisco, California, 94105, USA.
+
+%% Set languages for polyglossia%%
+\setdefaultlanguage{english}
+\setotherlanguage{dutch}
+\setotherlanguage{russian}
+
+%%% Defining custom hyphenations %%%
+\hyphenation{exo-pla-net exo-pla-nets exo-moon exo-moons}
+
+%% Define custom commands %%
+\newcommand\thesistitle{Title}
+\newcommand\thesissubtitle{subtitle} % Use a space ~ for no subtitle
+
+\newcommand\thesisauthorfull{John Maria Doe}
+\newcommand\thesisauthor{John Doe}
+\newcommand\thesisauthorborn{geboren te Jerusalem in 4}
+\newcommand\thesisyear{\the\year}
+
+\newcommand\thesisisbnb{987-65-432-1234-5}
+
+\newcommand\thesisprinter{Xerox B.V., Utrecht, The Netherlands}
+%\newcommand\thesisonline{Available online at \url{thesis}}
+\newcommand\thesisprintdetails{%
+Thesis printed on FSC recycled paper χ using ink X, \\
+typeset in fonts Garamond Premier Pro, Helvetica Neue and Monaco}
+
+\newcommand\thesispromotores{%
+prof.\,dr.~John M.\ Doe\\
+prof.\,dr.~Chris U.\ Meier}
+\newcommand\thesiscomittee{%
+prof.\,dr.~John M.\ Doe\\
+prof.\,dr.~John M.\ Doe\\
+dr.~John M.\ Doe\\
+prof.\,dr.~John M.\ Doe (University of Oxford)\\
+dr.~John M.\ Doe (University of Eindhoven)}
+
+\newcommand\thesiscoverimg{placeholder.pdf}
+\newcommand\thesiscoverimgdesc{noun. a thing which lies on, over, or around something, especially in order to protect or conceal it.}
+\newcommand\thesisfunding{This research is supported by the Dutch Technology Foundation STW, which is part of the Netherlands Organisation for Scientific Research (NWO) and partly funded by the Ministry of Economic Affairs (project number \num{10433}).}
+
+%\newcommand\thesisproverb{Η περιέργεια είναι η αρχή της σοφίας} % Wonder is the beginning of wisdom / Wisdom begins with wonder
+\newcommand\thesisproverb{Done is better than perfect}
+\newcommand\thesisproverbauthor{Me}
+
+\newcommand\thesisdedication{For my dog}
+
+%%% Hyperref setup -- custom parameters %%%
+\hypersetup{
+pdftitle = {\thesistitle\ -- \thesissubtitle},
+pdfauthor = {\thesisauthor},
+%pdfsubject = {Subject goes here},
+% Include revision and date in producer
+pdfproducer = {pdfLaTeX, compiled \today},
+%pdfkeywords = {Keywords, go, here},
+}
+
+%%% Use specific commands for this thesis %%%
+\newcommand\parmro{\ensuremath{r_\text{0}}\xspace}
+\newcommand\parmfG{\ensuremath{f_\text{G}}\xspace}
+\newcommand\rn{\ensuremath{r_\text{0}}\xspace}
+\newcommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
+
+%%% Specific non-SI units for this thesis %%%
+\DeclareSIUnit\mag{mag}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\Mjup{M\tsub{J}}
+\DeclareSIUnit\Mmoon{M\tsub{moon}}
+\DeclareSIUnit\Msun{M\tsub{$\odot$}}
+\DeclareSIUnit\Rsun{R\tsub{$\odot$}}
+\DeclareSIUnit\Lsun{L\tsub{$\odot$}}
+\DeclareSIUnit\Mstar{M\tsub{$\star$}}
+\DeclareSIUnit\Rstar{R\tsub{$\star$}}
+\DeclareSIUnit\Lstar{L\tsub{$\star$}}
+\DeclareSIUnit\Mearth{M\tsub{Earth}}
+\DeclareSIUnit\Rearth{R\tsub{Earth}}
+\DeclareSIUnit\astronomicalunit{AU}
+\DeclareSIUnit\AU{\astronomicalunit}
+\DeclareSIUnit\pixel{pix}
+\DeclareSIUnit\rad{rad}
+\DeclareSIUnit\magnitude{mag}
+% Variants on existing units spelled out (w for word)
+\DeclareSIUnit\degreew{deg}
+\DeclareSIUnit\arcminutew{arcmin}
+\DeclareSIUnit\arcsecondw{arcsec}
+\DeclareSIUnit\mas{mas} % milli arcsecond
+\DeclareSIUnit\magnitudeV{\magnitude\tsub{V}}
+\DeclareSIUnit\percent{per cent} % For MNRAS
+
+%%% Specific common names/words for this thesis %%%
+\newcommand\hubble{\emph{Hubble Space Telescope}\xspace}
+\newcommand\swasp{\emph{SuperWASP}\xspace}
+\newcommand\kepler{\emph{Kepler}\xspace}
+
+%%% Defining custom journal abbreviations %%%
+% \DefineJournalAbbreviation{Test}{Tes} % <-- Note that there is no period!
+%\DefineSpuriousJournalWord{\&}
+%\DefineJournalAbbreviation{Astronomy \& Astrophysics}{A\&A}
+% Define custom commands used in the BibTeX file:
+% \newcommand{\tjri}{Test Journal of Reference Information}
