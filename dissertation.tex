@@ -14,13 +14,26 @@
 
 %% Set paper size & geometry. The former is only set once, the latter more often
 \newcommand\thesispapersize{%
-  % Dutch proefschrift size:
+  % Dutch proefschrift size (no bleed):
   % \setstocksize{240mm}{170mm}
   % \settrimmedsize{240mm}{170mm}{*}
-  % Other sizes:
+  % Dutch proefschrift size (with 5mm bleed):
+  % \showtrimson
+  % \setstocksize{250mm}{180mm}
+  % \setlength{\trimedge}{5mm}
+  % \setlength{\trimtop}{5mm}
+  % \settrimmedsize{240mm}{170mm}{*}
+  % Small royal size (no bleed)
   % \stocksmallroyalvo
   % \pagesmallroyalvo
-  \stockroyalvo
+  % Royal paper size = 10×6.25in = 254mm x 158.75mm  (no bleed)
+  % \stockroyalvo
+  % \pageroyalvo
+  % Royal paper size (with 5mm bleed)
+  \showtrimson
+  \setstocksize{264mm}{168.75mm}
+  \setlength{\trimedge}{5mm}
+  \setlength{\trimtop}{5mm}
   \pageroyalvo
 }
 \newcommand\thesisgeometry{\medievalpage[9]}
