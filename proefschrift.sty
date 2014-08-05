@@ -297,6 +297,19 @@ bookmarksnumbered = true,
 \newenvironment{basedon}%
     {\begin{framed}\begin{sloppypar}\noindent}%
     {\end{sloppypar}\end{framed}}
+
+\newcommand\chapbasedon[1]{#1\bigskip\bigskip}
+
+% From http://www.latex-community.org/forum/viewtopic.php?f=5&t=2674
+% \ChapterOutsidePart and \ChapterInsidePart: control the bookmark level of each
+% sectioning command
+\makeatletter
+\newcommand{\ChapterOutsidePart}{%
+   \def\toclevel@chapter{-1}\def\toclevel@section{0}\def\toclevel@subsection{1}}
+\newcommand{\ChapterInsidePart}{%
+   \def\toclevel@chapter{0}\def\toclevel@section{1}\def\toclevel@subsection{2}}
+\makeatother
+
     
 %%% New chapter markup here
 %%%%%%%%%%%%%%%%%%%%%%%%%%
