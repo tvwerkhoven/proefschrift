@@ -3,6 +3,11 @@ proefschrift - LaTeX style for a Dutch dissertation
 
 This is a LaTeX style for a Dutch PhD dissertation, which is typically formatted as a B5 booklet with papers or conference proceedings as chapters.
 
+Usage
+=====
+
+Make sure you have a recent TeX distribution (TeXlive 2014 on Mac or MikTeX on Windows are known to work), old versions might lack packages or have old incompatible versions. Then download the dependencies listed below. Once you have a complete and up-to-date package, open dissertation.tex and compile this test-file.
+
 Dependencies
 ============
 
@@ -58,7 +63,7 @@ Spell checkers are available in many text editors by default, however several to
 Acknowledgments
 ===============
 
-- The image `placeholder.pdf' was copied from Wikipedia[1]. This work has been released into the public domain by its author, Vadmium at the English Wikipedia project. This applies worldwide.
+- The image `placeholder.pdf' was copied from Wikipedia[11]. This work has been released into the public domain by its author, Vadmium at the English Wikipedia project. This applies worldwide.
 - jabbrv_yahapj.bst is a fork of yahapj.bst[2] adapted for use with jabbrv[3].
 - This style is very loosely based on Alfred de Wijn's thesis, available at http://www.iluvatar.org/~dwijn/thesis
 
@@ -73,7 +78,7 @@ Resources
 References
 ==========
 
-[1] https://en.wikipedia.org/wiki/File:Question_opening-closing.svg
+[1] http://www.compholio.com/latex/jabbrv/
 [2] https://github.com/pkgw/yahapj/
 [3] http://www.compholio.com/latex/jabbrv/
 [4] http://www.tug.dk/FontCatalogue/math.html
@@ -83,6 +88,7 @@ References
 [8] https://www.languagetool.org/
 [9] http://scg.unibe.ch/research/textlint
 [10] https://www.gnu.org/software/diction/diction.html
+[11] https://en.wikipedia.org/wiki/File:Question_opening-closing.svg
 
 License
 =======
