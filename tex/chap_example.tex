@@ -10,6 +10,7 @@
 \renewcommand{\chapimgpath}{\imgpath chap_example/}
 \renewcommand{\chapplotpath}{\imgpath chap_example/}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Lorem ipsum dolor eu facilisis nulla}
 \label{chap:lorem_ipsum_dolor}
@@ -74,6 +75,187 @@ Unlike the earth, the sun consists only of gas, and therefore has no well-define
 The radius of the visible disk is commonly taken as the solar radius $R_\odot=(6.960\pm0.001)\times10^8~\mathrm{m}$.
 Height in the solar atmosphere is often measured relative to unity continuum optical depth at $\lambda=500$~nm.
 The luminosity $L_\odot$ and the radius $R_\odot$ yield an effective temperature $T_\mathrm{eff}=5778\pm3$~K\@ or $T_\mathrm{eff}$\,=\,\SI{5778\pm3}{\kelvin}\@.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Microscopy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{{{\chapimgpath tissue_aberrations-abb_overview.x1a}.pdf}}
+	\caption{
+	Illustration of sample-induced aberrations in microscopy.
+	These aberrations deform the point spread function, degrading both the resolution as well as the returned fluorescence.
+	\emph{Left:} in absence of any aberrations, the focus is diffraction limited.
+	\emph{Middle:} when focussing inside a sample, the light is aberrated due to heterogeneity in the sample, giving a smeared out focus with loss of signal and resolution.
+	\emph{Right:} to mitigate this, one can pre-compensate the incident wavefront on the sample such that the compensation and aberration together again yield a diffraction-limited focus inside the sample.
+	The challenge is to determine the shape to optimally compensate aberrations with.
+	\label{fig:tissue_aberr}}
+\end{figure}
+
+As mentioned before, adaptive optics is also finding applications in other fields, one of these being microscopy.
+While it is the opposite of astronomy in terms of scale, the instruments used in both fields often deal with similar visible light, and both are affected by aberrations.
+When imaging with a microscope, light travels through a sample, which spatially varies in refractive index as the Earth's atmosphere does.
+In \figref{fig:tissue_aberr} this issue is schematically illustrated.
+With light with similar properties, similar optics and comparable aberrations, indeed microscopy is a field where adaptive optics can be used for correction.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{System aberrations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%In astronomy, an important part of telescope design is site-testing, where various prospective sites are characterised in, among other things, seeing.
+%In microscopy, this has so far not been done thoroughly.
+%
+%Since adaptive optics in microscopes often use home-built systems, alignment of such systems is important.
+%To 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.75]{{{\chapimgpath tissue_aberrations-sph_abb.x1a}.pdf}}
+	\caption{
+	Because of the difference in refractive index between immersion fluid ($n\tsub{imm}$) and the sample ($n\tsub{sample}$), the converging beam suffers from spherical aberration, where focus position differs between paraxial and peripheral rays, the strength of which increases with depth.
+	Such aberrations are not strictly due to the sample, but to a sample-system mismatch, and therefore only vary axially.
+	The effect is exaggerated here for clarity.
+	\label{fig:sys_abb_depth}}
+\end{figure}
+
+There is a distinction between system and sample aberrations, where the former are due to setup misalignments, mirror non-flatness, etc.\ and the latter are due to the sample, as described before.
+Ideally, the setup used is well-aligned and delivers diffraction-limited performance.
+In practice, this is not always the case, which is why significant gain can already be obtained by correcting the system aberrations with adaptive optics.
+After correction of these system aberrations, specimen-induced aberrations can be corrected to improve the resolution further.
+
+
+For our analysis, we use a linear limb darkening law from \citet{claret2011}:
+\begin{equation}
+	I(\mu) = 1 - u(1-\mu),
+\end{equation}
+with $u$ is the limb darkening coefficient, $\mu = \cos(\gamma)$, where $\gamma$ is the angle between the line of sight and the surface normal.
+For stars such as \swtgtshort ($T\tsub{eff} \sim \SI{4500}{\kelvin}$, $\log g \sim \num{4.4}$, $[\element{Fe}/\element{H}] \sim \num{0}$), \citet{claret2011} find limb darkening coefficient $u = \num{0.8 \pm 0.05}$ in the \swasp band.
+We rewrite $\mu$ as linear coordinate $r = \sqrt{1-\mu^2}$ from \num{0} at the centre of the disk to \num{1} at the limb to yield:
+\begin{equation}
+	I(r) = 1 - u ( 1 - \sqrt{1-r^2}).
+\end{equation}
+The flux in a small vertical strip of width $dx$ at the centre of the stellar disk is then given by
+\begin{align}
+	\nonumber F\tsub{strip} &= dx \int_{-R}^{R} I(r/R) \, dr\\
+	                        &= dx \,2 \, R ( 1 - u + \frac{\mathrm\pi u}{4}),
+\end{align}
+while the total flux is given by 
+\begin{align}
+	\nonumber F\tsub{total} &= \int_0^R 2 \, \mathrm\pi \, r \, I(r/R) \, dr \\
+	                        &= \frac{1}{6} \, R^2 \, \mathrm\pi\,  (6 - 2 u),
+\end{align}
+with $R$ the stellar radius.
+
+\begin{table}
+    \centering
+    \caption{
+    Inflection points in the \swtgtshort light curve gradient indicative of opacity change.
+    Each inflection point indicates a change in gradient, which in turn implies change in opacity, and thus a new ring beginning to transit the star.
+    Time is shown in MHJD$-$\num{123}.
+    The numbers marked with an asterisk are approximate, indicating the presence of an inflexion point during daylight hours but whose presence is implied by the light curves in adjacent photometric measurements.
+    See also \figref{fig:light_curve_overview}.
+    \label{tab:lc_inflection}}
+    % See https://chenfuture.wordpress.com/2007/09/20/latex-tabular-more/
+    % Do not use '\rule[0.35cm]{0cm}{0cm}' to space rows
+    %\renewcommand{\tabcolsep}{1cm}
+    \renewcommand{\arraystretch}{1.05}
+    \newcommand{\marknodata}{{--}}
+    \newcommand{\numfunc}[1]{#1}
+    \newrobustcmd\markimplied{\tsup{*}}
+    \sisetup{
+    	table-align-text-post = false,
+%    	table-number-alignment = center,
+		table-figures-integer = 2,
+		table-figures-decimal = 3,
+	    table-space-text-post = \markimplied
+    }
+    \begin{tabular}{SSSSS}
+        \toprule
+	    \multicolumn{5}{c}{Inflection point [\si{\day}]} \\
+	    \midrule
+		\multicolumn{3}{c}{{Ingress}} & \multicolumn{2}{c}{{Egress}} \\
+		\cmidrule(rl){1-3}
+		\cmidrule(rl){4-5}
+
+\numfunc{-52.5}\markimplied 	& \numfunc{-15.15}				& \numfunc{-9.5}\markimplied 	& \numfunc{5.5}\markimplied 	& \numfunc{11.02} \\ 
+\numfunc{-51.5}\markimplied 	& \numfunc{-15}					& \numfunc{-8.97}				& \numfunc{8.5}\markimplied 	& \numfunc{11.5}\markimplied  \\ 
+\numfunc{-23.5}\markimplied 	& \numfunc{-14.5}\markimplied	& \numfunc{-8.5}\markimplied 	& \numfunc{8.77}				& \numfunc{14.5}\markimplied  \\ 
+\numfunc{-22.5}\markimplied 	& \numfunc{-14.15}				& \numfunc{-7.5}\markimplied 	& \numfunc{9.5}\markimplied 	& \numfunc{15.5}\markimplied  \\ 
+\numfunc{-21.5}\markimplied 	& \numfunc{-13.5}\markimplied	& \numfunc{-7.08}				& \numfunc{9.83}				& \numfunc{17.5}\markimplied  \\ 
+\numfunc{-16.5}\markimplied 	& \numfunc{-12.5}\markimplied	& \numfunc{-6.5}\markimplied 	& \numfunc{9.99}				& \numfunc{24.5}\markimplied  \\ 
+\numfunc{-16.155}				& \numfunc{-11.13}				& \numfunc{-6.17}				& \numfunc{10.5}\markimplied 	& \numfunc{31.5}\markimplied  \\ 
+\numfunc{-15.5}\markimplied 	& \numfunc{-10.5}\markimplied	& \numfunc{-5.5}\markimplied 	& \numfunc{10.86}				& \numfunc{32.5}\markimplied  \\ 
+
+		\bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{
+    Measured light curve gradients greater than \SI{0.1}{\per\day} and derived circular orbital speed.
+    Time is shown in MHJD$-$\num{123}.
+    \label{tab:lcgrad_parms}}
+    % See https://chenfuture.wordpress.com/2007/09/20/latex-tabular-more/
+    % Do not use '\rule[0.35cm]{0cm}{0cm}' to space rows
+    %\renewcommand{\tabcolsep}{1cm}
+    \renewcommand{\arraystretch}{1.05}
+    \newcommand{\marknodata}{{--}}
+    \newcommand{\numfunc}[1]{#1}
+    \sisetup{
+%    	table-align-text-post = false,
+%    	table-number-alignment = center,
+%		table-figures-integer = 2,
+%		table-figures-decimal = 3,
+		separate-uncertainty = false,
+    }
+    %\sisetup{separate-uncertainty = false}
+%for i in np.vstack([sysp['TIME'], sysp['LCGRAD']*3600*24, sysp['LCGRAD_ERR']*3600*24]).T:
+%    print "%.4g & \\num{%.2g \pm %.1g} \\\\" % tuple(i)
+
+    \begin{tabular}{@{}SSSSSS@{}}
+        \toprule
+        {Time} &
+        {Gradient} &
+        {Speed} &
+        {Time} &
+        {Gradient} &
+        {Speed} \\
+        {[\si{\day}]} &
+        {[\si{\per\day}]} &
+        {[\si{\kilo\meter\per\second}]} &
+        {[\si{\day}]} &
+        {[\si{\per\day}]} &
+        {[\si{\kilo\meter\per\second}]} \\
+
+%		Time & Gradient & Speed \\
+%		[\si{\day}] & [\si{\per\day}] & [\si{\kilo\meter\per\second}] \\
+        \cmidrule(r){1-3}
+        \cmidrule(l){4-6}
+
+\numfunc{-52.00} 	& \numfunc{-0.16 \pm 0.02} 	& \numfunc{-2.0 \pm 0.3} 	& \numfunc{-7.12} 	& \numfunc{-0.86 \pm 0.07} 	& \numfunc{-11 \pm 2} 	\\ 
+\numfunc{-23.10} 	& \numfunc{-0.16 \pm 0.02} 	& \numfunc{-2.1 \pm 0.4} 	& \numfunc{-6.96} 	& \numfunc{0.87 \pm 0.02} 	& \numfunc{11 \pm 1} 	\\ 
+\numfunc{-22.92} 	& \numfunc{-0.41 \pm 0.03} 	& \numfunc{-5.2 \pm 0.7} 	& \numfunc{-6.23} 	& \numfunc{-0.9 \pm 0.1} 	& \numfunc{-11 \pm 2} 	\\ 
+\numfunc{-22.02} 	& \numfunc{0.27 \pm 0.009} 	& \numfunc{3.4 \pm 0.4} 	& \numfunc{-6.04} 	& \numfunc{0.17 \pm 0.01} 	& \numfunc{2.1 \pm 0.3}	\\ 
+\numfunc{-19.10} 	& \numfunc{0.16 \pm 0.03} 	& \numfunc{2.0 \pm 0.4} 	& \numfunc{7.97} 	& \numfunc{0.33 \pm 0.04} 	& \numfunc{4.2 \pm 0.7}	\\ 
+\numfunc{-16.19} 	& \numfunc{-0.97 \pm 0.06} 	& \numfunc{-12 \pm 2} 		& \numfunc{8.75} 	& \numfunc{0.63 \pm 0.06} 	& \numfunc{8 \pm 1} 	\\ 
+\numfunc{-16.09} 	& \numfunc{0.62 \pm 0.07} 	& \numfunc{8 \pm 1} 		& \numfunc{9.75} 	& \numfunc{0.32 \pm 0.05} 	& \numfunc{4.0 \pm 0.8}	\\ 
+\numfunc{-15.05} 	& \numfunc{-1.19 \pm 0.04} 	& \numfunc{-15 \pm 2} 		& \numfunc{9.93} 	& \numfunc{-0.87 \pm 0.03} 	& \numfunc{-11 \pm 1}	\\ 
+\numfunc{-14.91} 	& \numfunc{1.72 \pm 0.04} 	& \numfunc{22 \pm 3} 		& \numfunc{10.05} 	& \numfunc{-0.26 \pm 0.07} 	& \numfunc{-3 \pm 1} 	\\ 
+\numfunc{-14.19} 	& \numfunc{-0.32 \pm 0.04} 	& \numfunc{-4.0 \pm 0.7} 	& \numfunc{10.77} 	& \numfunc{-0.58 \pm 0.03} 	& \numfunc{-7 \pm 1} 	\\ 
+\numfunc{-14.04} 	& \numfunc{3.04 \pm 0.06} 	& \numfunc{38 \pm 5} 		& \numfunc{10.94} 	& \numfunc{0.36 \pm 0.02} 	& \numfunc{4.6 \pm 0.6}	\\ 
+\numfunc{-11.19} 	& \numfunc{0.52 \pm 0.05} 	& \numfunc{7 \pm 1} 		& \numfunc{11.06} 	& \numfunc{1.09 \pm 0.09} 	& \numfunc{14 \pm 2} 	\\ 
+\numfunc{-10.97} 	& \numfunc{-0.52 \pm 0.01} 	& \numfunc{-6.6 \pm 0.8} 	& \numfunc{14.90} 	& \numfunc{-0.15 \pm 0.01} 	& \numfunc{-1.9 \pm 0.3}\\ 
+\numfunc{-10.18} 	& \numfunc{-0.54 \pm 0.03} 	& \numfunc{-6.8 \pm 0.9} 	& \numfunc{16.82} 	& \numfunc{-0.19 \pm 0.02} 	& \numfunc{-2.4 \pm 0.4}\\ 
+\numfunc{-9.98} 	& \numfunc{-0.27 \pm 0.01} 	& \numfunc{-3.5 \pm 0.5} 	& \numfunc{23.77} 	& \numfunc{0.88 \pm 0.05} 	& \numfunc{11 \pm 2} 	\\ 
+\numfunc{-9.04} 	& \numfunc{-0.57 \pm 0.03} 	& \numfunc{-7 \pm 1} 		& \numfunc{30.85} 	& \numfunc{-0.28 \pm 0.03} 	& \numfunc{-3.5 \pm 0.6}\\ 
+\numfunc{-8.90} 	& \numfunc{0.66 \pm 0.06} 	& \numfunc{8 \pm 1} 		& \numfunc{31.88} 	& \numfunc{-0.14 \pm 0.03} 	& \numfunc{-1.7 \pm 0.4}\\ 
+\numfunc{-8.12} 	& \numfunc{-0.87 \pm 0.02} 	& \numfunc{-11 \pm 1} 		& \numfunc{42.80} 	& \numfunc{-0.22 \pm 0.02} 	& \numfunc{-2.8 \pm 0.4}\\
+
+
+		\bottomrule
+    \end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Testing]{Testing. \hyperlink{toc}{\hyperback}}
